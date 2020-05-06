@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_weight="1"
+        android:id="@+id/fotos_equipos"
+        android:layout_width="100dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="19dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:src="@mipmap/ic_launcher"
+        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/fotos_equipos"
+        android:layout_toRightOf="@+id/fotos_equipos"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_alignTop="@+id/fotos_equipos">
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/nombre_equipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="#F3DB09" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/nombre_entrenador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/nombre_estadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</RelativeLayout>

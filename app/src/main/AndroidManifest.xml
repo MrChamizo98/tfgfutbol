@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tfgfutbol">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:largeHeap="true"
+        android:icon="@drawable/icono"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme"
+        android:name=".Firebase.TFGFUTBOL">
+        <!---android:name=".Firebase.TFGFUTBOL"-->
+        <activity android:name=".Activity.MainActivity">
+        </activity>
+        <activity android:name=".Activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.TemporadaActivity">
+        </activity>
+        <activity android:name=".Activity.ClasificacionActivity">
+        </activity>
+        <activity android:name=".Activity.SelectEquiposActivity">
+        </activity>
+        <activity android:name=".Activity.ArbitrosActivity">
+        </activity>
+        <activity android:name=".Activity.PartidosActivity">
+        </activity>
+        <activity android:name=".Activity.CargarActivity">
+        </activity>
+        <activity android:name=".Activity.UsuarioActivity">
+        </activity>
+        <activity android:name=".Activity.TemporadaNotFoundActivity">
+        </activity>
+        <activity android:name=".Activity.LigaActivity">
+        </activity>
+        <activity android:name=".Activity.PlantillaActivity">
+        </activity>
+        <activity android:name=".Activity.AlineacionActivity">
+        </activity>
+        <activity android:name=".Activity.EquipoPartidoActivity">
+        </activity>
+        <activity android:name=".Activity.DashboardActivity">
+        </activity>
+        <activity android:name=".Activity.GolesActivity">
+        </activity>
+        <activity android:name=".Activity.AmarillasActivity">
+        </activity>
+        <activity android:name=".Activity.RojasActivity">
+        </activity>
+        <activity android:name=".Activity.AsistenciasActivity">
+        </activity>
+        <activity android:name=".Activity.PronosticoActivity">
+        </activity>
+    </application>
+
+</manifest>

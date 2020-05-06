@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context="com.example.tfgfutbol.Activity.PronosticoActivity"
+    tools:visibility="visible"
+    android:background="@drawable/fondo"
+    android:id="@+id/swipelayoutalineacion">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            >
+
+            <TextView
+                android:id="@+id/nombre_liga_plantilla"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/holo_orange_dark"
+                android:background="#00574B"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="10dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="PRONÓSTICOS"
+                android:textColor="@android:color/holo_orange_dark"
+                android:background="#00574B"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="10dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/foto_equipo_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:src="@mipmap/ic_launcher"
+                    />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/equipo_local_alineacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="#F3DB09" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/resultado_alineacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/foto_equipo_visitante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:src="@mipmap/ic_launcher"
+                    />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/equipo_visitante_alineacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="#F3DB09" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prob_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Blanco" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            ></include>
+
+    </RelativeLayout>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

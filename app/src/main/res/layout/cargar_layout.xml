@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context="com.example.tfgfutbol.Activity.ClasificacionActivity"
+    android:background="@drawable/fondo"
+    tools:visibility="visible">
+
+    <TextView
+        android:id="@+id/nombre_liga"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/holo_orange_dark"
+        android:background="#00574B"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="10dp" />
+    <TextView
+        android:id="@+id/nombre_temporada"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/holo_orange_dark"
+        android:background="#00574B"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CARGANDO"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="60sp"
+        android:gravity="center"
+        >
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ESPERE UNOS INSTANTES..."
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="30sp"
+        android:gravity="center"
+        >
+    </TextView>
+</LinearLayout>

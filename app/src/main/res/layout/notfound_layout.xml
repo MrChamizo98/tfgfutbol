@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:background="@drawable/fondo"
+    tools:context=".Activity.TemporadaNotFoundActivity">
+
+    <include layout="@layout/toolbar"></include>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="AÚN NO HAY DATOS DE OTRAS TEMPORADAS"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <Button
+        android:id="@+id/button_volver"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:text="VOLVER"
+        android:onClick="clickBotonVolver"/>
+
+</LinearLayout>

@@ -1,0 +1,215 @@
+<resources>
+    <string name="app_name">TFG-APP-FUTBOL</string>
+    <string name="boton_inicio">ENTRAR</string>
+    <string name="title_ligas">LIGAS</string>
+    <string name="title_temporada">TEMPORADAS</string>
+    <string name="title_clasificacion">CLASIFICACIÓN</string>
+    <string name="title_equipos">EQUIPOS</string>
+    <string-array name="cabecera_tabla">
+        <item>POSICION</item>
+        <item>EQUIPO</item>
+        <item>PJ</item>
+        <item>G</item>
+        <item>E</item>
+        <item>P</item>
+        <item>GF</item>
+        <item>GC</item>
+        <item>PUNTOS</item>
+    </string-array>
+    <string-array name="cabecera_plantilla">
+        <item>FOTO</item>
+        <item>DORSAL</item>
+        <item>NOMBRE</item>
+        <item>PAIS</item>
+        <item>POSICION</item>
+        <item>EDAD</item>
+        <item>ALTURA</item>
+        <item>PESO</item>
+        <item>GOLES</item>
+        <item>ROJAS</item>
+        <item>AMARILLAS</item>
+    </string-array>
+    <string-array name="lista_jornada">
+        <item>Jornada 1</item>
+        <item>Jornada 2</item>
+        <item>Jornada 3</item>
+        <item>Jornada 4</item>
+        <item>Jornada 5</item>
+        <item>Jornada 6</item>
+        <item>Jornada 7</item>
+        <item>Jornada 8</item>
+        <item>Jornada 9</item>
+        <item>Jornada 10</item>
+        <item>Jornada 11</item>
+        <item>Jornada 12</item>
+        <item>Jornada 13</item>
+        <item>Jornada 14</item>
+        <item>Jornada 15</item>
+        <item>Jornada 16</item>
+        <item>Jornada 17</item>
+        <item>Jornada 18</item>
+        <item>Jornada 19</item>
+        <item>Jornada 20</item>
+        <item>Jornada 21</item>
+        <item>Jornada 22</item>
+        <item>Jornada 23</item>
+        <item>Jornada 24</item>
+        <item>Jornada 25</item>
+        <item>Jornada 26</item>
+        <item>Jornada 27</item>
+        <item>Jornada 28</item>
+        <item>Jornada 29</item>
+        <item>Jornada 30</item>
+        <item>Jornada 31</item>
+        <item>Jornada 32</item>
+        <item>Jornada 33</item>
+        <item>Jornada 34</item>
+        <item>Jornada 35</item>
+        <item>Jornada 36</item>
+        <item>Jornada 37</item>
+        <item>Jornada 38</item>
+    </string-array>
+
+    <string-array name="lista_jornada_bundesliga">
+        <item>Jornada 1</item>
+        <item>Jornada 2</item>
+        <item>Jornada 3</item>
+        <item>Jornada 4</item>
+        <item>Jornada 5</item>
+        <item>Jornada 6</item>
+        <item>Jornada 7</item>
+        <item>Jornada 8</item>
+        <item>Jornada 9</item>
+        <item>Jornada 10</item>
+        <item>Jornada 11</item>
+        <item>Jornada 12</item>
+        <item>Jornada 13</item>
+        <item>Jornada 14</item>
+        <item>Jornada 15</item>
+        <item>Jornada 16</item>
+        <item>Jornada 17</item>
+        <item>Jornada 18</item>
+        <item>Jornada 19</item>
+        <item>Jornada 20</item>
+        <item>Jornada 21</item>
+        <item>Jornada 22</item>
+        <item>Jornada 23</item>
+        <item>Jornada 24</item>
+        <item>Jornada 25</item>
+        <item>Jornada 26</item>
+        <item>Jornada 27</item>
+        <item>Jornada 28</item>
+        <item>Jornada 29</item>
+        <item>Jornada 30</item>
+        <item>Jornada 31</item>
+        <item>Jornada 32</item>
+        <item>Jornada 33</item>
+        <item>Jornada 34</item>
+    </string-array>
+
+    <string-array name="lista_clasificacion_bundesliga">
+        <item>Jornada 34</item>
+        <item>Jornada 33</item>
+        <item>Jornada 32</item>
+        <item>Jornada 31</item>
+        <item>Jornada 30</item>
+        <item>Jornada 29</item>
+        <item>Jornada 28</item>
+        <item>Jornada 27</item>
+        <item>Jornada 26</item>
+        <item>Jornada 25</item>
+        <item>Jornada 24</item>
+        <item>Jornada 23</item>
+        <item>Jornada 22</item>
+        <item>Jornada 21</item>
+        <item>Jornada 20</item>
+        <item>Jornada 19</item>
+        <item>Jornada 18</item>
+        <item>Jornada 17</item>
+        <item>Jornada 16</item>
+        <item>Jornada 15</item>
+        <item>Jornada 14</item>
+        <item>Jornada 13</item>
+        <item>Jornada 12</item>
+        <item>Jornada 11</item>
+        <item>Jornada 10</item>
+        <item>Jornada 9</item>
+        <item>Jornada 8</item>
+        <item>Jornada 7</item>
+        <item>Jornada 6</item>
+        <item>Jornada 5</item>
+        <item>Jornada 4</item>
+        <item>Jornada 3</item>
+        <item>Jornada 2</item>
+        <item>Jornada 1</item>
+    </string-array>
+
+    <string-array name="lista_clasificacion">
+        <item>Jornada 38</item>
+        <item>Jornada 37</item>
+        <item>Jornada 36</item>
+        <item>Jornada 35</item>
+        <item>Jornada 34</item>
+        <item>Jornada 33</item>
+        <item>Jornada 32</item>
+        <item>Jornada 31</item>
+        <item>Jornada 30</item>
+        <item>Jornada 29</item>
+        <item>Jornada 28</item>
+        <item>Jornada 27</item>
+        <item>Jornada 26</item>
+        <item>Jornada 25</item>
+        <item>Jornada 24</item>
+        <item>Jornada 23</item>
+        <item>Jornada 22</item>
+        <item>Jornada 21</item>
+        <item>Jornada 20</item>
+        <item>Jornada 19</item>
+        <item>Jornada 18</item>
+        <item>Jornada 17</item>
+        <item>Jornada 16</item>
+        <item>Jornada 15</item>
+        <item>Jornada 14</item>
+        <item>Jornada 13</item>
+        <item>Jornada 12</item>
+        <item>Jornada 11</item>
+        <item>Jornada 10</item>
+        <item>Jornada 9</item>
+        <item>Jornada 8</item>
+        <item>Jornada 7</item>
+        <item>Jornada 6</item>
+        <item>Jornada 5</item>
+        <item>Jornada 4</item>
+        <item>Jornada 3</item>
+        <item>Jornada 2</item>
+        <item>Jornada 1</item>
+    </string-array>
+
+    <string-array name="partidos_bundesliga">
+        <item>BUNDESLIGA</item>
+        <item>DFB POKAL</item>
+        <item>CHAMPIONS LEAGUE</item>
+        <item>EUROPA LEAGUE</item>
+    </string-array>
+    <string-array name="partidos_laliga">
+        <item>LA LIGA SANTANDER</item>
+        <item>COPA DEL REY</item>
+        <item>CHAMPIONS LEAGUE</item>
+        <item>EUROPA LEAGUE</item>
+    </string-array>
+    <string-array name="partidos_seriea">
+        <item>SERIE A</item>
+        <item>COPPA ITALIA</item>
+        <item>CHAMPIONS LEAGUE</item>
+        <item>EUROPA LEAGUE</item>
+    </string-array>
+    <string-array name="partidos_premier">
+        <item>PREMIER LEAGUE</item>
+        <item>FA CUP</item>
+        <item>CARABAO CUP</item>
+        <item>CHAMPIONS LEAGUE</item>
+        <item>EUROPA LEAGUE</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

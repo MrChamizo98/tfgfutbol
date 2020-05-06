@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:background="@drawable/fondo"
+    tools:context=".Activity.MainActivity">
+
+    <include layout="@layout/toolbar"></include>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="BIENVENIDO"
+        android:textColor="@android:color/holo_orange_dark"
+        android:background="#00574B"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <Button
+        android:id="@+id/button_inicio"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:text="@string/boton_inicio"
+        android:onClick="clickBotonEntrar"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_weight="1"
+        android:text="TFG REALIZADO POR:GONZALO HERREROS DIEZHANDINO"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+
+
+
+
+
+</LinearLayout>

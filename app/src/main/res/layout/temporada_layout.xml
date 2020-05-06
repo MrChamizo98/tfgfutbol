@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fondo"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context="com.example.tfgfutbol.Activity.TemporadaActivity"
+    tools:visibility="visible">
+
+    <include layout="@layout/toolbar"></include>
+    <TextView
+        android:id="@+id/nombre_liga_temporada"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/holo_orange_dark"
+        android:background="#00574B"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="10dp" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/title_temporada"
+        android:textColor="@android:color/holo_orange_dark"
+        android:background="#00574B"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="10dp" />
+
+
+    <ListView
+        android:id="@+id/listaLigas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/holo_orange_dark">
+    </ListView>
+
+</LinearLayout>

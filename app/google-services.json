@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "378578942415",
+    "firebase_url": "https://tfg-futbol.firebaseio.com",
+    "project_id": "tfg-futbol",
+    "storage_bucket": "tfg-futbol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378578942415:android:83be958397db0530737aba",
+        "android_client_info": {
+          "package_name": "com.example.tfg_app_futbol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378578942415-vdgo7j5go0qoem9q0v72qn5nc8m1qv4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7KlajWBSEzm6Ot8aUvTjcBM5hu3BUgUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378578942415-vdgo7j5go0qoem9q0v72qn5nc8m1qv4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378578942415:android:59ae370407f697a2737aba",
+        "android_client_info": {
+          "package_name": "com.example.tfgfutbol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378578942415-dt4rosd34fpqbu8vk9pc757bb4c5oq06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tfgfutbol",
+            "certificate_hash": "b521e29c287b03b59ce8dec6ab5530a6c9e39d1a"
+          }
+        },
+        {
+          "client_id": "378578942415-vdgo7j5go0qoem9q0v72qn5nc8m1qv4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7KlajWBSEzm6Ot8aUvTjcBM5hu3BUgUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378578942415-vdgo7j5go0qoem9q0v72qn5nc8m1qv4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

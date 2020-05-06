@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tfgfutbol.Activity.RojasActivity"
+    android:background="@drawable/bgapps">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtdashboard"
+                    android:text="Dashboard"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@id/txtdashboard"
+                    android:text="GRÁFICA ROJAS"
+                    android:textSize="14sp"
+                    android:textColor="#52BAFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/picturedashboard"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp">
+                </ImageView>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barchartrojas"
+            android:layout_width="match_parent"
+            android:layout_height="430dp"
+            android:layout_weight="1">
+
+        </com.github.mikephil.charting.charts.BarChart>
+    </LinearLayout>
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/inferior"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"></include>
+</RelativeLayout>

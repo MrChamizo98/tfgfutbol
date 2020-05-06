@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/init"
+        android:title="volver inicio"
+        android:id="@+id/boton_volver_inicio"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:icon="@drawable/estadistica"
+        android:title="dashboard"
+        android:id="@+id/boton_dashboard"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:icon="@drawable/clasificacion"
+        android:title="clasificacion"
+        android:id="@+id/boton_clasificacion"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:icon="@drawable/equipos"
+        android:title="equipos"
+        android:id="@+id/boton_equipos"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:icon="@drawable/partidos"
+        android:title="partidos"
+        android:id="@+id/boton_partidos"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:icon="@drawable/arbitro"
+        android:title="arbitros"
+        android:id="@+id/boton_arbitros"
+        app:showAsAction="always">
+    </item>
+
+</menu>
