@@ -1,6 +1,8 @@
 package com.example.tfgfutbol.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +23,14 @@ import com.example.tfgfutbol.Pojo.PartidosPojo;
 import com.example.tfgfutbol.Pojo.ResultadosEstPojo;
 import com.example.tfgfutbol.R;
 import com.example.tfgfutbol.Realm.ServicioAlineacion;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.distribution.PoissonDistribution;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PronosticoActivity extends AppCompatActivity {
@@ -58,10 +69,46 @@ public class PronosticoActivity extends AppCompatActivity {
     private ArrayList<ResultadosEstPojo> estadistica_resultado_local;
     private ArrayList<ResultadosEstPojo> estadistica_resultado_visitante;
 
+    private HorizontalBarChart localchart;
+    private HorizontalBarChart visitantechart;
+    private HorizontalBarChart local_global_chart;
+    private HorizontalBarChart visitante_global_chart;
+
+    private TextView v_loc;
+    private TextView e_loc;
+    private TextView d_loc;
+    private TextView v_vis;
+    private TextView e_vis;
+    private TextView d_vis;
+    private TextView v_locg;
+    private TextView e_locg;
+    private TextView d_locg;
+    private TextView v_visg;
+    private TextView e_visg;
+    private TextView d_visg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pronostico_layout);
+
+        localchart=(HorizontalBarChart) findViewById(R.id.local_horizontal);
+        visitantechart=(HorizontalBarChart) findViewById(R.id.visitante_horizontal);
+        local_global_chart=(HorizontalBarChart) findViewById(R.id.localglobal_horizontal);
+        visitante_global_chart=(HorizontalBarChart) findViewById(R.id.visitanteglobal_horizontal);
+
+        v_loc=(TextView) findViewById(R.id.v_loc);
+        e_loc=(TextView) findViewById(R.id.e_loc);
+        d_loc=(TextView) findViewById(R.id.d_loc);
+        v_vis=(TextView) findViewById(R.id.v_vis);
+        e_vis=(TextView) findViewById(R.id.e_vis);
+        d_vis=(TextView) findViewById(R.id.d_vis);
+        v_locg=(TextView) findViewById(R.id.v_locg);
+        e_locg=(TextView) findViewById(R.id.e_locg);
+        d_locg=(TextView) findViewById(R.id.d_locg);
+        v_visg=(TextView) findViewById(R.id.v_visg);
+        e_visg=(TextView) findViewById(R.id.e_visg);
+        d_visg=(TextView) findViewById(R.id.d_visg);
 
         estadistica_goles_local=new ArrayList<>();
         estadistica_goles_visitante= new ArrayList<>();
@@ -114,25 +161,25 @@ public class PronosticoActivity extends AppCompatActivity {
                 GolesEstPojo datos_local=new GolesEstPojo();
                 GolesEstPojo datos_visitante=new GolesEstPojo();
 
-                double sum_local=0;
+                float sum_local=0;
 
                 for(int i=0;i<estadistica_goles_local.size();i++){
                     if(estadistica_goles_local.get(i).getJornada().equals(jornada_pasada)){
                         datos_local=estadistica_goles_local.get(i);
                     }
-                    sum_local=sum_local+Double.parseDouble(estadistica_goles_local.get(i).getY_lambda().replace(",","."));
+                    sum_local=sum_local+Float.parseFloat(estadistica_goles_local.get(i).getY_lambda().replace(",","."));
                 }
-                double sum_visitante=0;
+                float sum_visitante=0;
 
                 for(int i=0;i<estadistica_goles_visitante.size();i++){
                     if(estadistica_goles_visitante.get(i).getJornada().equals(jornada_pasada)) {
                         datos_visitante = estadistica_goles_visitante.get(i);
                     }
-                    sum_visitante=sum_visitante+Double.parseDouble(estadistica_goles_visitante.get(i).getY_lambda().replace(",","."));
+                    sum_visitante=sum_visitante+Float.parseFloat(estadistica_goles_visitante.get(i).getY_lambda().replace(",","."));
                 }
 
-                ArrayList<Double> prob_gol_local= new ArrayList<>();
-                ArrayList<Double> prob_gol_visitante= new ArrayList<>();
+                ArrayList<Float> prob_gol_local= new ArrayList<>();
+                ArrayList<Float> prob_gol_visitante= new ArrayList<>();
 
                 //PRONÓSTICOS GOLES RESPECTO JORNADA PASADA
                 for (int j=0;j<9;j++){
@@ -140,11 +187,11 @@ public class PronosticoActivity extends AppCompatActivity {
                     String prob1=datos_local.getY_lambda();
                     prob1=prob1.replace(",",".");
                     PoissonDistribution poissonDistribution_local= new PoissonDistribution(Double.parseDouble(prob1));
-                    prob_gol_local.add(poissonDistribution_local.probability(j));
+                    prob_gol_local.add((float)poissonDistribution_local.probability(j));
                     String prob2=datos_visitante.getY_lambda();
                     prob2=prob2.replace(",",".");
                     PoissonDistribution poissonDistribution_visitante= new PoissonDistribution(Double.parseDouble(prob2));
-                    prob_gol_visitante.add(poissonDistribution_visitante.probability(j));
+                    prob_gol_visitante.add((float)poissonDistribution_visitante.probability(j));
                     Log.e("prob local", j+" goles "+poissonDistribution_local.probability(j));
                     Log.e("prob visitante", j+" goles "+poissonDistribution_visitante.probability(j));
                 }
@@ -153,16 +200,21 @@ public class PronosticoActivity extends AppCompatActivity {
                 sum_local=sum_local/estadistica_goles_local.size();
                 sum_visitante=sum_visitante/estadistica_goles_visitante.size();
 
-                ArrayList<Double> prob_gol_local_global= new ArrayList<>();
-                ArrayList<Double> prob_gol_visitante_global= new ArrayList<>();
+                ArrayList<Float> prob_gol_local_global= new ArrayList<>();
+                ArrayList<Float> prob_gol_visitante_global= new ArrayList<>();
                 for (int j=0;j<9;j++){
                     PoissonDistribution poissonDistribution_local= new PoissonDistribution(sum_local);
-                    prob_gol_local_global.add(poissonDistribution_local.probability(j));
+                    prob_gol_local_global.add((float)poissonDistribution_local.probability(j));
                     PoissonDistribution poissonDistribution_visitante= new PoissonDistribution(sum_visitante);
-                    prob_gol_visitante_global.add(poissonDistribution_visitante.probability(j));
+                    prob_gol_visitante_global.add((float)poissonDistribution_visitante.probability(j));
                     Log.e("GLOBAL LOCAL", j+" goles "+poissonDistribution_local.probability(j));
                     Log.e("GLOBAL VISITANTE", j+" goles "+poissonDistribution_visitante.probability(j));
                 }
+
+                setDataLocal(prob_gol_local);
+                setDataVisitante(prob_gol_visitante);
+                setDataGlobalLocal(prob_gol_local_global);
+                setDataGlobalVisitante(prob_gol_visitante_global);
 
             }
 
@@ -230,26 +282,40 @@ public class PronosticoActivity extends AppCompatActivity {
                 double cut1_visitante=Double.parseDouble(resultados_visitante.getCut1_y().replace(",","."));
                 double cut2_visitante=Double.parseDouble(resultados_visitante.getCut2_y().replace(",","."));
                 NormalDistribution normalDistribution=new NormalDistribution();
+
+                DecimalFormat df = new DecimalFormat("#%");
                 try {
                     double prob_derrota_local = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut1_local);
                     double prob_empate_local = normalDistribution.probability(cut1_local, cut2_local);
                     double prob_ganar_local = normalDistribution.probability(cut2_local, Double.POSITIVE_INFINITY);
+                    d_loc.setText(df.format(prob_derrota_local)+"");
+                    e_loc.setText(df.format(prob_empate_local)+"");
+                    v_loc.setText(df.format(prob_ganar_local)+"");
                     Log.e("RESULTADOS LOCAL: ", "DERROTA -> "+prob_derrota_local+" EMPATE->"+prob_empate_local+" GANAR->"+prob_ganar_local);
                 }catch (Exception e){
                     double prob_derrota_local = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut2_local);
                     double prob_empate_local = normalDistribution.probability(cut2_local, cut1_local);
                     double prob_ganar_local = normalDistribution.probability(cut1_local, Double.POSITIVE_INFINITY);
+                    d_loc.setText(df.format(prob_derrota_local)+"");
+                    e_loc.setText(df.format(prob_empate_local)+"");
+                    v_loc.setText(df.format(prob_ganar_local)+"");
                     Log.e("RESULTADOS LOCAL: ", "DERROTA -> "+prob_derrota_local+" EMPATE->"+prob_empate_local+" GANAR->"+prob_ganar_local);
                 }
                 try {
                     double prob_derrota_visitante = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut1_visitante);
                     double prob_empate_visitante = normalDistribution.probability(cut1_visitante, cut2_visitante);
                     double prob_ganar_visitante = normalDistribution.probability(cut2_visitante, Double.POSITIVE_INFINITY);
+                    d_vis.setText(df.format(prob_derrota_visitante)+"");
+                    e_vis.setText(df.format(prob_empate_visitante)+"");
+                    v_vis.setText(df.format(prob_ganar_visitante)+"");
                     Log.e("RESULTADOS VISITANTE: ", "DERROTA -> "+prob_derrota_visitante+" EMPATE->"+prob_empate_visitante+" GANAR->"+prob_ganar_visitante);
                 }catch (Exception e){
                     double prob_derrota_visitante = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut2_visitante);
                     double prob_empate_visitante = normalDistribution.probability(cut2_visitante, cut1_visitante);
                     double prob_ganar_visitante = normalDistribution.probability(cut1_visitante, Double.POSITIVE_INFINITY);
+                    d_vis.setText(df.format(prob_derrota_visitante)+"");
+                    e_vis.setText(df.format(prob_empate_visitante)+"");
+                    v_vis.setText(df.format(prob_ganar_visitante)+"");
                     Log.e("RESULTADOS VISITANTE: ", "DERROTA -> "+prob_derrota_visitante+" EMPATE->"+prob_empate_visitante+" GANAR->"+prob_ganar_visitante);
                 }
 
@@ -264,6 +330,12 @@ public class PronosticoActivity extends AppCompatActivity {
                 double derrota_visitante_global=normalDistribution.probability(Double.NEGATIVE_INFINITY,sum_visitante_cut1);
                 double empate_visitante_global=normalDistribution.probability(sum_visitante_cut1,sum_visitante_cut2);
                 double ganar_visitante_global=normalDistribution.probability(sum_visitante_cut2,Double.POSITIVE_INFINITY);
+                d_locg.setText(df.format(derrota_local_global)+"");
+                e_locg.setText(df.format(empate_local_global)+"");
+                v_locg.setText(df.format(ganar_local_global)+"");
+                d_visg.setText(df.format(derrota_visitante_global)+"");
+                e_visg.setText(df.format(empate_visitante_global)+"");
+                v_visg.setText(df.format(ganar_visitante_global)+"");
                 Log.e("RESULTADOSLOCALGLOBAL: ", "DERROTA -> "+derrota_local_global+" EMPATE->"+empate_local_global
                         +" GANAR->"+ganar_local_global);
                 Log.e("RESULTADOSVISGLOBAL: ", "DERROTA -> "+derrota_visitante_global+" EMPATE->"+empate_visitante_global
@@ -441,6 +513,102 @@ public class PronosticoActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    public void setDataLocal(ArrayList<Float> prob_gol_local){
+        ArrayList<BarEntry> yVals=new ArrayList<>();
+        float barwidth=9f;
+        float spaceforbar=10f;
+        for (int i=0;i<prob_gol_local.size();i++){
+            yVals.add(new BarEntry(i*spaceforbar,prob_gol_local.get(i)));
+        }
+
+        BarDataSet set1 = new BarDataSet(yVals,"Probabilidad de Goles Local");
+        BarData barData=new BarData(set1);
+        barData.setBarWidth(barwidth);
+        localchart.setData(barData);
+        localchart.setDescription(null);
+
+        XAxis xAxis = localchart.getXAxis();
+        xAxis.setLabelRotationAngle(-180);
+
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
+
+    }
+
+    public ArrayList<String> getDate() {
+
+        ArrayList<String> label = new ArrayList<>();
+        for (int i = 0; i < 9; i++){
+            label.add(""+i);
+        }
+        return label;
+    }
+
+    public void setDataVisitante(ArrayList<Float> prob_gol_local){
+        ArrayList<BarEntry> yVals=new ArrayList<>();
+        float barwidth=9f;
+        float spaceforbar=10f;
+        for (int i=0;i<prob_gol_local.size();i++){
+            yVals.add(new BarEntry(i*spaceforbar,prob_gol_local.get(i)));
+        }
+
+        BarDataSet set1 = new BarDataSet(yVals,"Probabilidad de Goles Visitante");
+
+        BarData barData=new BarData(set1);
+
+        barData.setBarWidth(barwidth);
+        visitantechart.setData(barData);
+        visitantechart.setDescription(null);
+
+        XAxis xAxis = visitantechart.getXAxis();
+        xAxis.setLabelRotationAngle(-180);
+
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
+    }
+
+    public void setDataGlobalLocal(ArrayList<Float> prob_gol_local){
+        ArrayList<BarEntry> yVals=new ArrayList<>();
+        float barwidth=9f;
+        float spaceforbar=10f;
+        for (int i=0;i<prob_gol_local.size();i++){
+            yVals.add(new BarEntry(i*spaceforbar,prob_gol_local.get(i)));
+        }
+
+        BarDataSet set1 = new BarDataSet(yVals,"Probabilidad Global Goles");
+
+        BarData barData=new BarData(set1);
+
+        barData.setBarWidth(barwidth);
+        local_global_chart.setData(barData);
+        local_global_chart.setDescription(null);
+
+        XAxis xAxis = local_global_chart.getXAxis();
+        xAxis.setLabelRotationAngle(-180);
+
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
+    }
+
+    public void setDataGlobalVisitante(ArrayList<Float> prob_gol_local){
+        ArrayList<BarEntry> yVals=new ArrayList<>();
+        float barwidth=9f;
+        float spaceforbar=10f;
+        for (int i=0;i<prob_gol_local.size();i++){
+            yVals.add(new BarEntry(i*spaceforbar,prob_gol_local.get(i)));
+        }
+
+        BarDataSet set1 = new BarDataSet(yVals,"Probabilidad Global Goles");
+
+        BarData barData=new BarData(set1);
+
+        barData.setBarWidth(barwidth);
+        visitante_global_chart.setData(barData);
+        visitante_global_chart.setDescription(null);
+
+        XAxis xAxis = visitante_global_chart.getXAxis();
+        xAxis.setLabelRotationAngle(-180);
+
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
     }
 }
 
