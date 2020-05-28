@@ -109,13 +109,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:textAlignment="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="V - Victoria"
+                            android:textColor="#00FF00">
+                        </TextView>
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="E - Empate"
+                            android:textColor="#FFFF00">
+                        </TextView>
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="D - Derrota"
+                            android:textColor="@color/Rojo">
+                        </TextView>
+                    </LinearLayout>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:text="V/E/D respecto Partido Anterior"
+                        android:text="V/E/D Partido Anterior"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="20sp"
@@ -138,6 +165,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="V"
+                                android:background="#00FF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -151,6 +179,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="E"
+                                android:background="#FFFF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -163,6 +192,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="D"
+                                android:background="#FF0000"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -181,6 +211,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="V"
+                                android:background="#00FF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -194,6 +225,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="E"
+                                android:background="#FFFF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -206,6 +238,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="D"
+                                android:background="#FF0000"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -231,6 +264,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
+                                android:background="#00FF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -244,6 +278,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
+                                android:background="#FFFF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -258,6 +293,7 @@
                                 android:gravity="center"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
+                                android:background="#FF0000"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -273,6 +309,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
+                                android:background="#00FF00"
                                 android:gravity="center"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
@@ -288,6 +325,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:textAlignment="center"
+                                android:background="#FFFF00"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
@@ -301,18 +339,20 @@
                                 android:gravity="center"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
+                                android:background="#FF0000"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
                     </LinearLayout>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:text="V/E/D respecto Partido Global"
+                        android:text="V/E/D Temporada"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="20sp"
@@ -335,6 +375,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="V"
+                                android:background="#00FF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -348,6 +389,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="E"
+                                android:background="#FFFF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -360,6 +402,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="D"
+                                android:background="#FF0000"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -378,6 +421,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="V"
+                                android:background="#00FF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -391,6 +435,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="E"
+                                android:background="#FFFF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -403,6 +448,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="D"
+                                android:background="#FF0000"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -428,6 +474,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
+                                android:background="#00FF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -441,6 +488,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
+                                android:background="#FFFF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -453,6 +501,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
+                                android:background="#FF0000"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -470,6 +519,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
+                                android:background="#00FF00"
                                 android:gravity="center"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
@@ -484,6 +534,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
+                                android:background="#FFFF00"
                                 android:textAlignment="center"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
@@ -497,19 +548,21 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:textAlignment="center"
+                                android:background="#FF0000"
                                 android:textColor="#000000"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
                     </LinearLayout>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:text="Goles Promedio-Partido Anterior"
+                        android:text="Goles Promedio Partido Anterior"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="20sp"
@@ -543,7 +596,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:text="Goles Promedio-Temporada Global"
+                        android:text="Goles Promedio Temporada"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="20sp"

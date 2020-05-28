@@ -153,7 +153,22 @@ public class PronosticoActivity extends AppCompatActivity {
         jor_ant=jor_ant-1;
         final String jornada_pasada="Jornada "+jor_ant;
 
-        NombreBD="goles";
+        Log.e("Liga", Liga);
+        if (Liga.equals("LaLiga Santander")) {
+            NombreBD = "goles";
+            NombreBD1="resultados";
+        }else if (Liga.equals("Premier League")){
+            NombreBD = "goles_premier";
+            NombreBD1="resultados_premier";
+            Log.e("ENTRA", NombreBD);
+        }else if (Liga.equals("Serie A")){
+            NombreBD="goles_seriea";
+            NombreBD1="resultados_seriea";
+        }else if (Liga.equals("Bundesliga")){
+            NombreBD="goles_bundesliga";
+            NombreBD1="resultados_bundesliga";
+        }
+
         BDCallEstadisticas(new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
@@ -167,7 +182,9 @@ public class PronosticoActivity extends AppCompatActivity {
                     if(estadistica_goles_local.get(i).getJornada().equals(jornada_pasada)){
                         datos_local=estadistica_goles_local.get(i);
                     }
-                    sum_local=sum_local+Float.parseFloat(estadistica_goles_local.get(i).getY_lambda().replace(",","."));
+
+                    sum_local = sum_local + Float.parseFloat(estadistica_goles_local.get(i).getY_lambda().replace(",", "."));
+
                 }
                 float sum_visitante=0;
 
@@ -175,25 +192,29 @@ public class PronosticoActivity extends AppCompatActivity {
                     if(estadistica_goles_visitante.get(i).getJornada().equals(jornada_pasada)) {
                         datos_visitante = estadistica_goles_visitante.get(i);
                     }
-                    sum_visitante=sum_visitante+Float.parseFloat(estadistica_goles_visitante.get(i).getY_lambda().replace(",","."));
+                    sum_visitante = sum_visitante + Float.parseFloat(estadistica_goles_visitante.get(i).getY_lambda().replace(",", "."));
                 }
 
                 ArrayList<Float> prob_gol_local= new ArrayList<>();
                 ArrayList<Float> prob_gol_visitante= new ArrayList<>();
 
                 //PRONÓSTICOS GOLES RESPECTO JORNADA PASADA
-                for (int j=0;j<9;j++){
-                    Log.e("entra","bucle para datos");
-                    String prob1=datos_local.getY_lambda();
-                    prob1=prob1.replace(",",".");
-                    PoissonDistribution poissonDistribution_local= new PoissonDistribution(Double.parseDouble(prob1));
-                    prob_gol_local.add((float)poissonDistribution_local.probability(j));
-                    String prob2=datos_visitante.getY_lambda();
-                    prob2=prob2.replace(",",".");
-                    PoissonDistribution poissonDistribution_visitante= new PoissonDistribution(Double.parseDouble(prob2));
-                    prob_gol_visitante.add((float)poissonDistribution_visitante.probability(j));
-                    Log.e("prob local", j+" goles "+poissonDistribution_local.probability(j));
-                    Log.e("prob visitante", j+" goles "+poissonDistribution_visitante.probability(j));
+                try {
+                    for (int j = 0; j < 9; j++) {
+                        Log.e("entra", "bucle para datos");
+                        String prob1 = datos_local.getY_lambda();
+                        prob1 = prob1.replace(",", ".");
+                        PoissonDistribution poissonDistribution_local = new PoissonDistribution(Double.parseDouble(prob1));
+                        prob_gol_local.add((float) poissonDistribution_local.probability(j));
+                        String prob2 = datos_visitante.getY_lambda();
+                        prob2 = prob2.replace(",", ".");
+                        PoissonDistribution poissonDistribution_visitante = new PoissonDistribution(Double.parseDouble(prob2));
+                        prob_gol_visitante.add((float) poissonDistribution_visitante.probability(j));
+                        Log.e("prob local", j + " goles " + poissonDistribution_local.probability(j));
+                        Log.e("prob visitante", j + " goles " + poissonDistribution_visitante.probability(j));
+                    }
+                }catch (Exception e){
+                    Log.e("NOTICIA: ","no hay jornada pasada");
                 }
 
                 //PRONÓSTICO RESPECTO TODAS LAS JORNADAS
@@ -211,10 +232,15 @@ public class PronosticoActivity extends AppCompatActivity {
                     Log.e("GLOBAL VISITANTE", j+" goles "+poissonDistribution_visitante.probability(j));
                 }
 
-                setDataLocal(prob_gol_local);
-                setDataVisitante(prob_gol_visitante);
-                setDataGlobalLocal(prob_gol_local_global);
-                setDataGlobalVisitante(prob_gol_visitante_global);
+                if (prob_gol_local.size()==0 && prob_gol_visitante.size()==0){
+                    setDataGlobalLocal(prob_gol_local_global);
+                    setDataGlobalVisitante(prob_gol_visitante_global);
+                }else {
+                    setDataLocal(prob_gol_local);
+                    setDataVisitante(prob_gol_visitante);
+                    setDataGlobalLocal(prob_gol_local_global);
+                    setDataGlobalVisitante(prob_gol_visitante_global);
+                }
 
             }
 
@@ -233,8 +259,6 @@ public class PronosticoActivity extends AppCompatActivity {
 
             }
         });
-
-        NombreBD1="resultados";
         BDCallEstadisticasResultado(new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
@@ -277,48 +301,60 @@ public class PronosticoActivity extends AppCompatActivity {
                     }
                 }
 
-                double cut1_local=Double.parseDouble(resultados_local.getCut1_y().replace(",","."));
-                double cut2_local=Double.parseDouble(resultados_local.getCut2_y().replace(",","."));
-                double cut1_visitante=Double.parseDouble(resultados_visitante.getCut1_y().replace(",","."));
-                double cut2_visitante=Double.parseDouble(resultados_visitante.getCut2_y().replace(",","."));
-                NormalDistribution normalDistribution=new NormalDistribution();
+                NormalDistribution normalDistribution = new NormalDistribution();
 
                 DecimalFormat df = new DecimalFormat("#%");
                 try {
-                    double prob_derrota_local = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut1_local);
-                    double prob_empate_local = normalDistribution.probability(cut1_local, cut2_local);
-                    double prob_ganar_local = normalDistribution.probability(cut2_local, Double.POSITIVE_INFINITY);
-                    d_loc.setText(df.format(prob_derrota_local)+"");
-                    e_loc.setText(df.format(prob_empate_local)+"");
-                    v_loc.setText(df.format(prob_ganar_local)+"");
-                    Log.e("RESULTADOS LOCAL: ", "DERROTA -> "+prob_derrota_local+" EMPATE->"+prob_empate_local+" GANAR->"+prob_ganar_local);
+                    double cut1_local;
+                    double cut2_local;
+                    double cut1_visitante;
+                    double cut2_visitante;
+                    cut1_local = Double.parseDouble(resultados_local.getCut1_y().replace(",", "."));
+                    cut2_local = Double.parseDouble(resultados_local.getCut2_y().replace(",", "."));
+                    cut1_visitante = Double.parseDouble(resultados_visitante.getCut1_y().replace(",", "."));
+                    cut2_visitante = Double.parseDouble(resultados_visitante.getCut2_y().replace(",", "."));
+                    try {
+                        double prob_derrota_local = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut1_local);
+                        double prob_empate_local = normalDistribution.probability(cut1_local, cut2_local);
+                        double prob_ganar_local = normalDistribution.probability(cut2_local, Double.POSITIVE_INFINITY);
+                        d_loc.setText(df.format(prob_derrota_local) + "");
+                        e_loc.setText(df.format(prob_empate_local) + "");
+                        v_loc.setText(df.format(prob_ganar_local) + "");
+                        Log.e("RESULTADOS LOCAL: ", "DERROTA -> " + prob_derrota_local + " EMPATE->" + prob_empate_local + " GANAR->" + prob_ganar_local);
+                    } catch (Exception e) {
+                        double prob_derrota_local = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut2_local);
+                        double prob_empate_local = normalDistribution.probability(cut2_local, cut1_local);
+                        double prob_ganar_local = normalDistribution.probability(cut1_local, Double.POSITIVE_INFINITY);
+                        d_loc.setText(df.format(prob_derrota_local) + "");
+                        e_loc.setText(df.format(prob_empate_local) + "");
+                        v_loc.setText(df.format(prob_ganar_local) + "");
+                        Log.e("RESULTADOS LOCAL: ", "DERROTA -> " + prob_derrota_local + " EMPATE->" + prob_empate_local + " GANAR->" + prob_ganar_local);
+                    }
+                    try {
+                        double prob_derrota_visitante = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut1_visitante);
+                        double prob_empate_visitante = normalDistribution.probability(cut1_visitante, cut2_visitante);
+                        double prob_ganar_visitante = normalDistribution.probability(cut2_visitante, Double.POSITIVE_INFINITY);
+                        d_vis.setText(df.format(prob_derrota_visitante) + "");
+                        e_vis.setText(df.format(prob_empate_visitante) + "");
+                        v_vis.setText(df.format(prob_ganar_visitante) + "");
+                        Log.e("RESULTADOS VISITANTE: ", "DERROTA -> " + prob_derrota_visitante + " EMPATE->" + prob_empate_visitante + " GANAR->" + prob_ganar_visitante);
+                    } catch (Exception e) {
+                        double prob_derrota_visitante = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut2_visitante);
+                        double prob_empate_visitante = normalDistribution.probability(cut2_visitante, cut1_visitante);
+                        double prob_ganar_visitante = normalDistribution.probability(cut1_visitante, Double.POSITIVE_INFINITY);
+                        d_vis.setText(df.format(prob_derrota_visitante) + "");
+                        e_vis.setText(df.format(prob_empate_visitante) + "");
+                        v_vis.setText(df.format(prob_ganar_visitante) + "");
+                        Log.e("RESULTADOS VISITANTE: ", "DERROTA -> " + prob_derrota_visitante + " EMPATE->" + prob_empate_visitante + " GANAR->" + prob_ganar_visitante);
+                    }
                 }catch (Exception e){
-                    double prob_derrota_local = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut2_local);
-                    double prob_empate_local = normalDistribution.probability(cut2_local, cut1_local);
-                    double prob_ganar_local = normalDistribution.probability(cut1_local, Double.POSITIVE_INFINITY);
-                    d_loc.setText(df.format(prob_derrota_local)+"");
-                    e_loc.setText(df.format(prob_empate_local)+"");
-                    v_loc.setText(df.format(prob_ganar_local)+"");
-                    Log.e("RESULTADOS LOCAL: ", "DERROTA -> "+prob_derrota_local+" EMPATE->"+prob_empate_local+" GANAR->"+prob_ganar_local);
+                    d_loc.setText( "NA");
+                    e_loc.setText( "NA");
+                    v_loc.setText("NA");
+                    d_vis.setText( "NA");
+                    e_vis.setText( "NA");
+                    v_vis.setText( "NA");
                 }
-                try {
-                    double prob_derrota_visitante = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut1_visitante);
-                    double prob_empate_visitante = normalDistribution.probability(cut1_visitante, cut2_visitante);
-                    double prob_ganar_visitante = normalDistribution.probability(cut2_visitante, Double.POSITIVE_INFINITY);
-                    d_vis.setText(df.format(prob_derrota_visitante)+"");
-                    e_vis.setText(df.format(prob_empate_visitante)+"");
-                    v_vis.setText(df.format(prob_ganar_visitante)+"");
-                    Log.e("RESULTADOS VISITANTE: ", "DERROTA -> "+prob_derrota_visitante+" EMPATE->"+prob_empate_visitante+" GANAR->"+prob_ganar_visitante);
-                }catch (Exception e){
-                    double prob_derrota_visitante = normalDistribution.probability(Double.NEGATIVE_INFINITY, cut2_visitante);
-                    double prob_empate_visitante = normalDistribution.probability(cut2_visitante, cut1_visitante);
-                    double prob_ganar_visitante = normalDistribution.probability(cut1_visitante, Double.POSITIVE_INFINITY);
-                    d_vis.setText(df.format(prob_derrota_visitante)+"");
-                    e_vis.setText(df.format(prob_empate_visitante)+"");
-                    v_vis.setText(df.format(prob_ganar_visitante)+"");
-                    Log.e("RESULTADOS VISITANTE: ", "DERROTA -> "+prob_derrota_visitante+" EMPATE->"+prob_empate_visitante+" GANAR->"+prob_ganar_visitante);
-                }
-
                 sum_local_cut1=sum_local_cut1/estadistica_resultado_local.size();
                 sum_local_cut2=sum_local_cut2/estadistica_resultado_local.size();
                 sum_visitante_cut1=sum_visitante_cut1/estadistica_resultado_visitante.size();
@@ -369,9 +405,11 @@ public class PronosticoActivity extends AppCompatActivity {
                 GolesEstPojo est = dataSnapshot.getValue(GolesEstPojo.class);
                 if (est.getTemporada().equals(Temporada) && est.getEquipo().equals(Local)) {
                     estadistica_goles_local.add(est);
+                    Log.e("Equipo local goles",est.getEquipo());
                 }
                 if (est.getTemporada().equals(Temporada) && est.getEquipo().equals(Visitante)) {
                     estadistica_goles_visitante.add(est);
+                    Log.e("Equipo visitante goles",est.getEquipo());
                 }
             }
 
@@ -534,6 +572,8 @@ public class PronosticoActivity extends AppCompatActivity {
 
         xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
 
+        localchart.refreshDrawableState();
+        localchart.invalidate();
     }
 
     public ArrayList<String> getDate() {
@@ -565,6 +605,9 @@ public class PronosticoActivity extends AppCompatActivity {
         xAxis.setLabelRotationAngle(-180);
 
         xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
+
+        visitantechart.refreshDrawableState();
+        visitantechart.invalidate();
     }
 
     public void setDataGlobalLocal(ArrayList<Float> prob_gol_local){
@@ -587,6 +630,9 @@ public class PronosticoActivity extends AppCompatActivity {
         xAxis.setLabelRotationAngle(-180);
 
         xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
+
+        local_global_chart.refreshDrawableState();
+        local_global_chart.invalidate();
     }
 
     public void setDataGlobalVisitante(ArrayList<Float> prob_gol_local){
@@ -609,6 +655,9 @@ public class PronosticoActivity extends AppCompatActivity {
         xAxis.setLabelRotationAngle(-180);
 
         xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate()));
+
+        visitante_global_chart.refreshDrawableState();
+        visitante_global_chart.invalidate();
     }
 }
 

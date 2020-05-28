@@ -35,6 +35,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -193,72 +195,31 @@ public class PartidosActivity extends AppCompatActivity implements AdapterView.O
                 String parts[] = Jornada.split(" ");
                 int jor=Integer.parseInt(parts[1]);
                 jor=jor-1;
-                jor=jor*10;
+                if(Liga.equals("Bundesliga")){
+                    jor=jor*9;
+                }else {
+                    jor = jor * 10;
+                }
                 int posicion=position+jor;
-                if (Liga.equals("LaLiga Santander")) {
-                    try {
-                        if (partidos.get(posicion).getPartidos_resultado().equals("Aplazado") ||
-                                partidos.get(posicion).getPartidos_resultado().equals("x - x")) {
-                            Intent i = new Intent(PartidosActivity.this, PronosticoActivity.class);
-                            i.putExtra("LIGA", Liga);
-                            i.putExtra("EQUIPO LOCAL", partidos.get(posicion).getPartidos_equipo_local());
-                            i.putExtra("EQUIPO VISITANTE", partidos.get(posicion).getPartidos_equipo_visitante());
-                            i.putExtra("FOTO LOCAL", partidos.get(posicion).getPartidos_foto_local());
-                            i.putExtra("FOTO VISITANTE", partidos.get(posicion).getPartidos_foto_visitante());
-                            i.putExtra("RESULTADO", partidos.get(posicion).getPartidos_resultado());
-                            i.putExtra("TEMPORADA", Temporada);
-                            i.putExtra("JORNADA", partidos.get(posicion).getPartidos_jornada());
-                            //i.putExtra("ALINEACION",alineacion);
-                            Toast.makeText(PartidosActivity.this, "Has seleccionado temporada " + partidos.get(posicion).getPartidos_equipo_local() +
-                                    " contra " + partidos.get(posicion).getPartidos_equipo_visitante(), Toast.LENGTH_SHORT).show();
-                            startActivity(i);
-                        } else {
-                            Intent i = new Intent(PartidosActivity.this, AlineacionActivity.class);
-                            i.putExtra("LIGA", Liga);
-                            i.putExtra("EQUIPO LOCAL", partidos.get(posicion).getPartidos_equipo_local());
-                            i.putExtra("EQUIPO VISITANTE", partidos.get(posicion).getPartidos_equipo_visitante());
-                            i.putExtra("FOTO LOCAL", partidos.get(posicion).getPartidos_foto_local());
-                            i.putExtra("FOTO VISITANTE", partidos.get(posicion).getPartidos_foto_visitante());
-                            i.putExtra("RESULTADO", partidos.get(posicion).getPartidos_resultado());
-                            i.putExtra("TEMPORADA", Temporada);
-                            i.putExtra("JORNADA", partidos.get(posicion).getPartidos_jornada());
-                            //i.putExtra("ALINEACION",alineacion);
-                            Toast.makeText(PartidosActivity.this, "Has seleccionado temporada " + partidos.get(posicion).getPartidos_equipo_local() +
-                                    " contra " + partidos.get(posicion).getPartidos_equipo_visitante(), Toast.LENGTH_SHORT).show();
-                            startActivity(i);
-                        }
-                    } catch (Exception E) {
-                        if (lista_partidos[posicion].getPartidos_resultado().equals("Aplazado") ||
-                                lista_partidos[posicion].getPartidos_resultado().equals("x - x")) {
-                            Intent i = new Intent(PartidosActivity.this, PronosticoActivity.class);
-                            i.putExtra("EQUIPO LOCAL", lista_partidos[posicion].getPartidos_equipo_local());
-                            i.putExtra("EQUIPO VISITANTE", lista_partidos[posicion].getPartidos_equipo_visitante());
-                            i.putExtra("FOTO LOCAL", lista_partidos[posicion].getPartidos_foto_local());
-                            i.putExtra("FOTO VISITANTE", lista_partidos[posicion].getPartidos_foto_visitante());
-                            i.putExtra("RESULTADO", lista_partidos[posicion].getPartidos_resultado());
-                            i.putExtra("TEMPORADA", Temporada);
-                            i.putExtra("JORNADA", lista_partidos[posicion].getPartidos_jornada());
-                            //i.putExtra("ALINEACION",alineacion);
-                            Toast.makeText(PartidosActivity.this, "Has seleccionado temporada " + lista_partidos[posicion].getPartidos_equipo_local() +
-                                    " contra " + lista_partidos[posicion].getPartidos_equipo_visitante(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent i = new Intent(PartidosActivity.this, AlineacionActivity.class);
-                            i.putExtra("LIGA", Liga);
-                            i.putExtra("EQUIPO LOCAL", lista_partidos[posicion].getPartidos_equipo_local());
-                            i.putExtra("EQUIPO VISITANTE", lista_partidos[posicion].getPartidos_equipo_visitante());
-                            i.putExtra("FOTO LOCAL", lista_partidos[posicion].getPartidos_foto_local());
-                            i.putExtra("FOTO VISITANTE", lista_partidos[posicion].getPartidos_foto_visitante());
-                            i.putExtra("RESULTADO", lista_partidos[posicion].getPartidos_resultado());
-                            i.putExtra("TEMPORADA", Temporada);
-                            i.putExtra("JORNADA", lista_partidos[posicion].getPartidos_jornada());
-                            //i.putExtra("ALINEACION",alineacion);
-                            Toast.makeText(PartidosActivity.this, "Has seleccionado temporada " + lista_partidos[posicion].getPartidos_equipo_local() +
-                                    " contra " + lista_partidos[posicion].getPartidos_equipo_visitante(), Toast.LENGTH_SHORT).show();
-                            startActivity(i);
-                        }
-                    }
-                }else{
-                    try{
+                Pattern patron= Pattern.compile("[0-9]{2}:[0-9]{2}");
+                try {
+                    Matcher mat=patron.matcher(partidos.get(posicion).getPartidos_resultado());
+                    if (partidos.get(posicion).getPartidos_resultado().equals("Aplazado") ||
+                            partidos.get(posicion).getPartidos_resultado().equals("x - x") || mat.matches()) {
+                        Intent i = new Intent(PartidosActivity.this, PronosticoActivity.class);
+                        i.putExtra("LIGA", Liga);
+                        i.putExtra("EQUIPO LOCAL", partidos.get(posicion).getPartidos_equipo_local());
+                        i.putExtra("EQUIPO VISITANTE", partidos.get(posicion).getPartidos_equipo_visitante());
+                        i.putExtra("FOTO LOCAL", partidos.get(posicion).getPartidos_foto_local());
+                        i.putExtra("FOTO VISITANTE", partidos.get(posicion).getPartidos_foto_visitante());
+                        i.putExtra("RESULTADO", partidos.get(posicion).getPartidos_resultado());
+                        i.putExtra("TEMPORADA", Temporada);
+                        i.putExtra("JORNADA", partidos.get(posicion).getPartidos_jornada());
+                        //i.putExtra("ALINEACION",alineacion);
+                        Toast.makeText(PartidosActivity.this, "Has seleccionado temporada " + partidos.get(posicion).getPartidos_equipo_local() +
+                                " contra " + partidos.get(posicion).getPartidos_equipo_visitante(), Toast.LENGTH_SHORT).show();
+                        startActivity(i);
+                    } else {
                         Intent i = new Intent(PartidosActivity.this, AlineacionActivity.class);
                         i.putExtra("LIGA", Liga);
                         i.putExtra("EQUIPO LOCAL", partidos.get(posicion).getPartidos_equipo_local());
@@ -272,7 +233,25 @@ public class PartidosActivity extends AppCompatActivity implements AdapterView.O
                         Toast.makeText(PartidosActivity.this, "Has seleccionado temporada " + partidos.get(posicion).getPartidos_equipo_local() +
                                 " contra " + partidos.get(posicion).getPartidos_equipo_visitante(), Toast.LENGTH_SHORT).show();
                         startActivity(i);
-                    }catch (Exception E){
+                    }
+                } catch (Exception E) {
+                    Matcher mat=patron.matcher(lista_partidos[posicion].getPartidos_resultado());
+                    if (lista_partidos[posicion].getPartidos_resultado().equals("Aplazado") ||
+                            lista_partidos[posicion].getPartidos_resultado().equals("x - x") || mat.matches()) {
+                        Intent i = new Intent(PartidosActivity.this, PronosticoActivity.class);
+                        i.putExtra("LIGA", Liga);
+                        i.putExtra("EQUIPO LOCAL", lista_partidos[posicion].getPartidos_equipo_local());
+                        i.putExtra("EQUIPO VISITANTE", lista_partidos[posicion].getPartidos_equipo_visitante());
+                        i.putExtra("FOTO LOCAL", lista_partidos[posicion].getPartidos_foto_local());
+                        i.putExtra("FOTO VISITANTE", lista_partidos[posicion].getPartidos_foto_visitante());
+                        i.putExtra("RESULTADO", lista_partidos[posicion].getPartidos_resultado());
+                        i.putExtra("TEMPORADA", Temporada);
+                        i.putExtra("JORNADA", lista_partidos[posicion].getPartidos_jornada());
+                        //i.putExtra("ALINEACION",alineacion);
+                        Toast.makeText(PartidosActivity.this, "Has seleccionado temporada " + lista_partidos[posicion].getPartidos_equipo_local() +
+                                " contra " + lista_partidos[posicion].getPartidos_equipo_visitante(), Toast.LENGTH_SHORT).show();
+                        startActivity(i);
+                    } else {
                         Intent i = new Intent(PartidosActivity.this, AlineacionActivity.class);
                         i.putExtra("LIGA", Liga);
                         i.putExtra("EQUIPO LOCAL", lista_partidos[posicion].getPartidos_equipo_local());

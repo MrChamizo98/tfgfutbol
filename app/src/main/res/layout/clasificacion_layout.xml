@@ -69,10 +69,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Champions League"
-            android:textColor="#0101DF">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Champions League"
+        android:textColor="#0101DF">
         </TextView>
         <TextView
             android:layout_marginLeft="5dp"

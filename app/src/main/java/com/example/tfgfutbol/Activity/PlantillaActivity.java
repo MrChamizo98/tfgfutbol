@@ -370,7 +370,7 @@ public class PlantillaActivity extends AppCompatActivity {
                 .build();
 
         final RealmConfiguration realmConfigurationSeriea19Plan= new RealmConfiguration.Builder()
-                .name("PlantillaSeriea19")
+                    .name("PlantillaSeriea19")
                 .schemaVersion(41)
                 .build();
 
