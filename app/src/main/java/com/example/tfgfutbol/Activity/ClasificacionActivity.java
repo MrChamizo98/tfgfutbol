@@ -63,6 +63,24 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
     private Clasificacion[] clasificaciones;
     private int id_liga;
 
+
+    Realm myRealmLigaClasif;
+    Realm myRealmPremierClasif;
+    Realm myRealmBundesligaClasif;
+    Realm myRealmSerieAClasif;
+    Realm myRealmLiga19Clasif;
+    Realm myRealmPremier19Clasif;
+    Realm myRealmBundesliga19Clasif;
+    Realm myRealmSerieA19Clasif;
+    Realm myRealmLiga18Clasif;
+    Realm myRealmPremier18Clasif;
+    Realm myRealmBundesliga18Clasif;
+    Realm myRealmSerieA18Clasif;
+    Realm myRealmLiga17Clasif;
+    Realm myRealmPremier17Clasif;
+    Realm myRealmBundesliga17Clasif;
+    Realm myRealmSerieA17Clasif;
+
     public ClasificacionActivity() {
     }
 
@@ -150,6 +168,12 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
      */
         public boolean onOptionsItemSelected (MenuItem menuItem){
             Intent i;
+
+            myRealmLigaClasif.close();
+            myRealmPremierClasif.close();
+            myRealmBundesligaClasif.close();
+            myRealmSerieAClasif.close();
+
             switch (menuItem.getItemId()) {
                 case R.id.boton_volver_inicio:
                     i = new Intent(ClasificacionActivity.this, LigaActivity.class);
@@ -465,22 +489,32 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
                     .schemaVersion(33)
                     .build();
 
-            final Realm myRealmLigaClasif = Realm.getInstance(realmConfigurationLigaClasif);
-            final Realm myRealmPremierClasif = Realm.getInstance(realmConfigurationPremierClasif);
-            final Realm myRealmBundesligaClasif = Realm.getInstance(realmConfigurationBundesligaClasif);
-            final Realm myRealmSerieAClasif = Realm.getInstance(realmConfigurationSerieaClasif);
-            final Realm myRealmLiga19Clasif = Realm.getInstance(realmConfigurationLiga19Clasif);
-            final Realm myRealmPremier19Clasif = Realm.getInstance(realmConfigurationPremier19Clasif);
-            final Realm myRealmBundesliga19Clasif = Realm.getInstance(realmConfigurationBundesliga19Clasif);
-            final Realm myRealmSerieA19Clasif = Realm.getInstance(realmConfigurationSeriea19Clasif);
-            final Realm myRealmLiga18Clasif = Realm.getInstance(realmConfigurationLiga18Clasif);
-            final Realm myRealmPremier18Clasif = Realm.getInstance(realmConfigurationPremier18Clasif);
-            final Realm myRealmBundesliga18Clasif = Realm.getInstance(realmConfigurationBundesliga18Clasif);
-            final Realm myRealmSerieA18Clasif = Realm.getInstance(realmConfigurationSeriea18Clasif);
-            final Realm myRealmLiga17Clasif = Realm.getInstance(realmConfigurationLiga17Clasif);
-            final Realm myRealmPremier17Clasif = Realm.getInstance(realmConfigurationPremier17Clasif);
-            final Realm myRealmBundesliga17Clasif = Realm.getInstance(realmConfigurationBundesliga17Clasif);
-            final Realm myRealmSerieA17Clasif = Realm.getInstance(realmConfigurationSeriea17Clasif);
+            if (Liga.equals("LaLiga Santander") && GlobalInfo.get_clasiflaliga()==0) {
+                Realm.deleteRealm(realmConfigurationLigaClasif);
+            } else if (Liga.equals("Premier League")&& GlobalInfo.get_clasifpremier()==0) {
+                Realm.deleteRealm(realmConfigurationPremierClasif);
+            } else if (Liga.equals("Bundesliga") && GlobalInfo.get_clasifbundesliga()==0) {
+                Realm.deleteRealm(realmConfigurationBundesligaClasif);
+            } else if (Liga.equals("Serie A") && GlobalInfo.get_clasifseriea()==0) {
+                Realm.deleteRealm(realmConfigurationSerieaClasif);
+            }
+
+            myRealmLigaClasif = Realm.getInstance(realmConfigurationLigaClasif);
+            myRealmPremierClasif = Realm.getInstance(realmConfigurationPremierClasif);
+            myRealmBundesligaClasif = Realm.getInstance(realmConfigurationBundesligaClasif);
+            myRealmSerieAClasif = Realm.getInstance(realmConfigurationSerieaClasif);
+            myRealmLiga19Clasif = Realm.getInstance(realmConfigurationLiga19Clasif);
+            myRealmPremier19Clasif = Realm.getInstance(realmConfigurationPremier19Clasif);
+            myRealmBundesliga19Clasif = Realm.getInstance(realmConfigurationBundesliga19Clasif);
+            myRealmSerieA19Clasif = Realm.getInstance(realmConfigurationSeriea19Clasif);
+            myRealmLiga18Clasif = Realm.getInstance(realmConfigurationLiga18Clasif);
+            myRealmPremier18Clasif = Realm.getInstance(realmConfigurationPremier18Clasif);
+            myRealmBundesliga18Clasif = Realm.getInstance(realmConfigurationBundesliga18Clasif);
+            myRealmSerieA18Clasif = Realm.getInstance(realmConfigurationSeriea18Clasif);
+            myRealmLiga17Clasif = Realm.getInstance(realmConfigurationLiga17Clasif);
+            myRealmPremier17Clasif = Realm.getInstance(realmConfigurationPremier17Clasif);
+            myRealmBundesliga17Clasif = Realm.getInstance(realmConfigurationBundesliga17Clasif);
+            myRealmSerieA17Clasif = Realm.getInstance(realmConfigurationSeriea17Clasif);
 
 
             ServicioClasificacion servicioClasificacion=null;
@@ -527,6 +561,8 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
                     servicioClasificacion= new ServicioClasificacion(myRealmSerieA17Clasif);
                 }
             }
+
+
 
             return servicioClasificacion;
         }

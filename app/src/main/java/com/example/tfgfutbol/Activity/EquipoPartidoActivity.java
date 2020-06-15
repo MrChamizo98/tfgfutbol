@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.tfgfutbol.GlobalInfo;
 import com.example.tfgfutbol.Pojo.ChampionsPojo;
 import com.example.tfgfutbol.Pojo.CopaPojo;
 import com.example.tfgfutbol.Adapter.CustomAdapterPartido;
@@ -71,6 +72,23 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
     TextView nombre_liga;
     TextView nombre_equipo;
     Spinner spinner;
+
+    Realm myRealmLigaPar;
+    Realm myRealmPremierPar;
+    Realm myRealmBundesligaPar;
+    Realm myRealmSerieAPar;
+    Realm myRealmLiga19Par;
+    Realm myRealmPremier19Par;
+    Realm myRealmBundesliga19Par;
+    Realm myRealmSerieA19Par;
+    Realm myRealmLiga18Par;
+    Realm myRealmPremier18Par;
+    Realm myRealmBundesliga18Par;
+    Realm myRealmSerieA18Par;
+    Realm myRealmLiga17Par;
+    Realm myRealmPremier17Par;
+    Realm myRealmBundesliga17Par;
+    Realm myRealmSerieA17Par;
 
     /**
      * Método de creación de la vista
@@ -198,6 +216,11 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
      * @return true
      */
     public boolean onOptionsItemSelected(MenuItem menuItem){
+        myRealmLigaPar.close();
+        myRealmPremierPar.close();
+        myRealmBundesligaPar.close();
+        myRealmSerieAPar.close();
+
         Intent i;
         switch (menuItem.getItemId()){
             case R.id.boton_volver_inicio:
@@ -251,6 +274,12 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
      * @param v
      */
     public void clickBotonPlantillas(View v){
+
+        myRealmLigaPar.close();
+        myRealmPremierPar.close();
+        myRealmBundesligaPar.close();
+        myRealmSerieAPar.close();
+
         //Creamos el intent
         Intent intent = new Intent(this, PlantillaActivity.class);
         intent.putExtra("LIGA",Liga);
@@ -612,22 +641,32 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
                 .schemaVersion(65)
                 .build();
 
-        final Realm myRealmLigaPar = Realm.getInstance(realmConfigurationLigaPar);
-        final Realm myRealmPremierPar= Realm.getInstance(realmConfigurationPremierPar);
-        final Realm myRealmBundesligaPar = Realm.getInstance(realmConfigurationBundesligaPar);
-        final Realm myRealmSerieAPar = Realm.getInstance(realmConfigurationSerieaPar);
-        final Realm myRealmLiga19Par = Realm.getInstance(realmConfigurationLiga19Par);
-        final Realm myRealmPremier19Par = Realm.getInstance(realmConfigurationPremier19Par);
-        final Realm myRealmBundesliga19Par = Realm.getInstance(realmConfigurationBundesliga19Par);
-        final Realm myRealmSerieA19Par = Realm.getInstance(realmConfigurationSeriea19Par);
-        final Realm myRealmLiga18Par = Realm.getInstance(realmConfigurationLiga18Par);
-        final Realm myRealmPremier18Par= Realm.getInstance(realmConfigurationPremier18Par);
-        final Realm myRealmBundesliga18Par = Realm.getInstance(realmConfigurationBundesliga18Par);
-        final Realm myRealmSerieA18Par = Realm.getInstance(realmConfigurationSeriea18Par);
-        final Realm myRealmLiga17Par = Realm.getInstance(realmConfigurationLiga17Par);
-        final Realm myRealmPremier17Par= Realm.getInstance(realmConfigurationPremier17Par);
-        final Realm myRealmBundesliga17Par = Realm.getInstance(realmConfigurationBundesliga17Par);
-        final Realm myRealmSerieA17Par = Realm.getInstance(realmConfigurationSeriea17Par);
+        if (Liga.equals("LaLiga Santander") && GlobalInfo.get_partlaliga()==0) {
+            Realm.deleteRealm(realmConfigurationLigaPar);
+        } else if (Liga.equals("Premier League")&& GlobalInfo.get_partpremier()==0) {
+            Realm.deleteRealm(realmConfigurationPremierPar);
+        } else if (Liga.equals("Bundesliga") && GlobalInfo.get_partbundesliga()==0) {
+            Realm.deleteRealm(realmConfigurationBundesligaPar);
+        } else if (Liga.equals("Serie A") && GlobalInfo.get_partseriea()==0) {
+            Realm.deleteRealm(realmConfigurationSerieaPar);
+        }
+
+        myRealmLigaPar = Realm.getInstance(realmConfigurationLigaPar);
+        myRealmPremierPar= Realm.getInstance(realmConfigurationPremierPar);
+        myRealmBundesligaPar = Realm.getInstance(realmConfigurationBundesligaPar);
+        myRealmSerieAPar = Realm.getInstance(realmConfigurationSerieaPar);
+        myRealmLiga19Par = Realm.getInstance(realmConfigurationLiga19Par);
+        myRealmPremier19Par = Realm.getInstance(realmConfigurationPremier19Par);
+        myRealmBundesliga19Par = Realm.getInstance(realmConfigurationBundesliga19Par);
+        myRealmSerieA19Par = Realm.getInstance(realmConfigurationSeriea19Par);
+        myRealmLiga18Par = Realm.getInstance(realmConfigurationLiga18Par);
+        myRealmPremier18Par= Realm.getInstance(realmConfigurationPremier18Par);
+        myRealmBundesliga18Par = Realm.getInstance(realmConfigurationBundesliga18Par);
+        myRealmSerieA18Par = Realm.getInstance(realmConfigurationSeriea18Par);
+        myRealmLiga17Par = Realm.getInstance(realmConfigurationLiga17Par);
+        myRealmPremier17Par= Realm.getInstance(realmConfigurationPremier17Par);
+        myRealmBundesliga17Par = Realm.getInstance(realmConfigurationBundesliga17Par);
+        myRealmSerieA17Par = Realm.getInstance(realmConfigurationSeriea17Par);
 
 
         ServicioPartidos servicioClasificacion=null;
@@ -674,6 +713,8 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
                 servicioClasificacion= new ServicioPartidos(myRealmSerieA17Par);
             }
         }
+
+
 
         return servicioClasificacion;
     }

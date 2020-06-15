@@ -52,6 +52,23 @@ public class PlantillaActivity extends AppCompatActivity {
 
     Plantilla[] plantillas;
 
+    Realm myRealmLigaPlan;
+    Realm myRealmPremierPlan;
+    Realm myRealmBundesligaPlan;
+    Realm myRealmSerieAPlan;
+    Realm myRealmLiga19Plan;
+    Realm myRealmPremier19Plan;
+    Realm myRealmBundesliga19Plan;
+    Realm myRealmSerieA19Plan;
+    Realm myRealmLiga18Plan;
+    Realm myRealmPremier18Plan;
+    Realm myRealmBundesliga18Plan;
+    Realm myRealmSerieA18Plan;
+    Realm myRealmLiga17Plan;
+    Realm myRealmPremier17Plan;
+    Realm myRealmBundesliga17Plan;
+    Realm myRealmSerieA17Plan;
+
     /**
      * Método de creación de la vista
      * @param savedInstanceState
@@ -245,6 +262,12 @@ public class PlantillaActivity extends AppCompatActivity {
      */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
+
+        myRealmLigaPlan.close();
+        myRealmPremierPlan.close();
+        myRealmBundesligaPlan.close();
+        myRealmSerieAPlan.close();
+
         switch (menuItem.getItemId()){
             case R.id.boton_volver_inicio:
                 i=new Intent(this, LigaActivity.class);
@@ -297,6 +320,12 @@ public class PlantillaActivity extends AppCompatActivity {
      * @param v
      */
     public void clickBotonPartidos(View v){
+
+        myRealmLigaPlan.close();
+        myRealmPremierPlan.close();
+        myRealmBundesligaPlan.close();
+        myRealmSerieAPlan.close();
+
         //Creamos el intent
         Intent intent = new Intent(this, EquipoPartidoActivity.class);
         intent.putExtra("LIGA",Liga);
@@ -442,22 +471,32 @@ public class PlantillaActivity extends AppCompatActivity {
                 .schemaVersion(49)
                 .build();
 
-        final Realm myRealmLigaPlan = Realm.getInstance(realmConfigurationLigaPlan);
-        final Realm myRealmPremierPlan= Realm.getInstance(realmConfigurationPremierPlan);
-        final Realm myRealmBundesligaPlan = Realm.getInstance(realmConfigurationBundesligaPlan);
-        final Realm myRealmSerieAPlan = Realm.getInstance(realmConfigurationSerieaPlan);
-        final Realm myRealmLiga19Plan = Realm.getInstance(realmConfigurationLiga19Plan);
-        final Realm myRealmPremier19Plan = Realm.getInstance(realmConfigurationPremier19Plan);
-        final Realm myRealmBundesliga19Plan = Realm.getInstance(realmConfigurationBundesliga19Plan);
-        final Realm myRealmSerieA19Plan = Realm.getInstance(realmConfigurationSeriea19Plan);
-        final Realm myRealmLiga18Plan = Realm.getInstance(realmConfigurationLiga18Plan);
-        final Realm myRealmPremier18Plan = Realm.getInstance(realmConfigurationPremier18Plan);
-        final Realm myRealmBundesliga18Plan = Realm.getInstance(realmConfigurationBundesliga18Plan);
-        final Realm myRealmSerieA18Plan = Realm.getInstance(realmConfigurationSeriea18Plan);
-        final Realm myRealmLiga17Plan = Realm.getInstance(realmConfigurationLiga17Plan);
-        final Realm myRealmPremier17Plan= Realm.getInstance(realmConfigurationPremier17Plan);
-        final Realm myRealmBundesliga17Plan = Realm.getInstance(realmConfigurationBundesliga17Plan);
-        final Realm myRealmSerieA17Plan = Realm.getInstance(realmConfigurationSeriea17Plan);
+        if (Liga.equals("LaLiga Santander") && GlobalInfo.get_plantlaliga()==0) {
+            Realm.deleteRealm(realmConfigurationLigaPlan);
+        } else if (Liga.equals("Premier League")&& GlobalInfo.get_plantpremier()==0) {
+            Realm.deleteRealm(realmConfigurationPremierPlan);
+        } else if (Liga.equals("Bundesliga") && GlobalInfo.get_plantbundesliga()==0) {
+            Realm.deleteRealm(realmConfigurationBundesligaPlan);
+        } else if (Liga.equals("Serie A") && GlobalInfo.get_plantseriea()==0) {
+            Realm.deleteRealm(realmConfigurationSerieaPlan);
+        }
+
+        myRealmLigaPlan = Realm.getInstance(realmConfigurationLigaPlan);
+        myRealmPremierPlan= Realm.getInstance(realmConfigurationPremierPlan);
+        myRealmBundesligaPlan = Realm.getInstance(realmConfigurationBundesligaPlan);
+        myRealmSerieAPlan = Realm.getInstance(realmConfigurationSerieaPlan);
+        myRealmLiga19Plan = Realm.getInstance(realmConfigurationLiga19Plan);
+        myRealmPremier19Plan = Realm.getInstance(realmConfigurationPremier19Plan);
+        myRealmBundesliga19Plan = Realm.getInstance(realmConfigurationBundesliga19Plan);
+        myRealmSerieA19Plan = Realm.getInstance(realmConfigurationSeriea19Plan);
+        myRealmLiga18Plan = Realm.getInstance(realmConfigurationLiga18Plan);
+        myRealmPremier18Plan = Realm.getInstance(realmConfigurationPremier18Plan);
+        myRealmBundesliga18Plan = Realm.getInstance(realmConfigurationBundesliga18Plan);
+        myRealmSerieA18Plan = Realm.getInstance(realmConfigurationSeriea18Plan);
+        myRealmLiga17Plan = Realm.getInstance(realmConfigurationLiga17Plan);
+        myRealmPremier17Plan= Realm.getInstance(realmConfigurationPremier17Plan);
+        myRealmBundesliga17Plan = Realm.getInstance(realmConfigurationBundesliga17Plan);
+        myRealmSerieA17Plan = Realm.getInstance(realmConfigurationSeriea17Plan);
 
 
         ServicioPlantilla servicioClasificacion=null;
