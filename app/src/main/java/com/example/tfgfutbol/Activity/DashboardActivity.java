@@ -30,6 +30,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     ImageView foto;
     private CardView card_goles, card_amarillas, card_rojas, card_asistencias;
 
+    /**
+     * Método de creación de la vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -68,6 +72,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+
+    /**
+     * Método que llama a la actividad correspondiente tras la selección de uno de los datos del
+     * dashboard
+     * @param v
+     */
     @Override
     public void onClick(View v){
         Intent i;
@@ -99,12 +109,23 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
 
     }
+
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior, menu);
         getMenuInflater().inflate(R.menu.menuinferior, menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected (MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()) {

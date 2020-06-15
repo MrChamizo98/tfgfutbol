@@ -23,26 +23,52 @@ public class CustomAdapterAlineacion extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * Constructor
+     * @param applicationContext
+     * @param alineacion
+     */
     public CustomAdapterAlineacion(Context applicationContext, ArrayList<AlineacionPojo> alineacion) {
         this.context = applicationContext;
         this.alineacion=alineacion;
     }
 
+    /**
+     * Tamaño areay alineacion
+     * @return
+     */
     @Override
     public int getCount() {
         return alineacion.size();
     }
 
+    /**
+     * obtener elemento i del array alaineación
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return alineacion.get(i);
     }
 
+    /**
+     * obtener el id de un elemento del array
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * asignar los valores correspondientes a la entrada del listview de la vista
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vista=view;

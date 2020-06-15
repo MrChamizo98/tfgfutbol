@@ -26,27 +26,54 @@ public class CustomAdapterTemporada extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * constructor
+     * @param applicationContext
+     * @param temporadas
+     * @param url
+     */
     public CustomAdapterTemporada(Context applicationContext, String []temporadas, String url) {
         this.context = applicationContext;
         this.url=url;
         this.temporadas=temporadas;
     }
 
+    /**
+     * tamaño de array temporadas
+     * @return
+     */
     @Override
     public int getCount() {
         return temporadas.length;
     }
 
+    /**
+     * elemento i de array temporadas
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return temporadas[i];
     }
 
+    /**
+     * id de elemento seleccionado de array
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * asignar valores de elemento seleccionado a la vista
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vista=view;

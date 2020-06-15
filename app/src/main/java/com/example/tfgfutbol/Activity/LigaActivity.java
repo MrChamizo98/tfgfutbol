@@ -37,6 +37,10 @@ public class LigaActivity extends AppCompatActivity {
     ArrayList <LigaPojo> Ligas;
     DatabaseReference mRootReference;
 
+    /**
+     * Método de creación de la vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -114,11 +118,21 @@ public class LigaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){
@@ -131,6 +145,10 @@ public class LigaActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Método que descarga los datos de la base de datos
+     * @param listener
+     */
     public void BDCall(final OnGetDataListener listener){
         mRootReference.child("LIGAS").addValueEventListener(new ValueEventListener() {
             @Override

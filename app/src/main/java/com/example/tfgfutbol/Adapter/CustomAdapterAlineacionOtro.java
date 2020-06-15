@@ -24,27 +24,54 @@ public class CustomAdapterAlineacionOtro extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * Constructor
+     * @param tipo
+     * @param applicationContext
+     * @param jugadores
+     */
     public CustomAdapterAlineacionOtro(String tipo, Context applicationContext, ArrayList<Alineacion> jugadores) {
         this.context = applicationContext;
         this.jugadores=jugadores;
         this.tipo=tipo;
     }
 
+    /**
+     * tamaño de array jugadores
+     * @return
+     */
     @Override
     public int getCount() {
         return jugadores.size();
     }
 
+    /**
+     * elemento de array jugadores
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return jugadores.get(i);
     }
 
+    /**
+     * id de elemento de array
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * asignar los valores correspondientes del elemento a la vista
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vista=view;

@@ -27,26 +27,52 @@ public class CustomAdapterArbitro extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * constructor
+     * @param applicationContext
+     * @param arbitros
+     */
     public CustomAdapterArbitro(Context applicationContext, ArrayList<ArbitroPojo> arbitros) {
         this.context = applicationContext;
         this.arbitros=arbitros;
     }
 
+    /**
+     * tamaño de array arbitros
+     * @return
+     */
     @Override
     public int getCount() {
         return arbitros.size();
     }
 
+    /**
+     * elemento i de array arbitros
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return arbitros.get(i);
     }
 
+    /**
+     * id de elemento de array arbitros
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * asignar a la vista los datos del elemento seleccionado
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vista=view;

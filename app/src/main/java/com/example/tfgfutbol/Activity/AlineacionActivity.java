@@ -71,6 +71,12 @@ public class AlineacionActivity extends AppCompatActivity {
     Alineacion []alineaciones;
 
 
+    /**
+     * Método de creación de vista.
+     * Asignación de instancia de bases de datos
+     * Asgnación de elementos de la vista, jugadores, equipos...
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -557,12 +563,22 @@ public class AlineacionActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         getMenuInflater().inflate(R.menu.menuinferior,menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
 
         Intent i;
@@ -614,6 +630,11 @@ public class AlineacionActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Método para descargar los datos de la base de datos
+     * @param servicioAlineacion
+     * @param listener
+     */
     public void BDCall(final ServicioAlineacion servicioAlineacion, final OnGetDataListener listener){
         mRootReference.child(NombreBD).addValueEventListener(new ValueEventListener() {
             @Override

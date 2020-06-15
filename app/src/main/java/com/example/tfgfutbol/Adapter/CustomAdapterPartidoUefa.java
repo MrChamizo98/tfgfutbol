@@ -22,26 +22,52 @@ public class CustomAdapterPartidoUefa extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * constructor
+     * @param applicationContext
+     * @param partidos
+     */
     public CustomAdapterPartidoUefa(Context applicationContext, ArrayList<UefaPojo> partidos) {
         this.context = applicationContext;
         this.partidos=partidos;
     }
 
+    /**
+     * tamaño del array partidos
+     * @return
+     */
     @Override
     public int getCount() {
         return partidos.size();
     }
 
+    /**
+     * elemento i del array partidos
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return partidos.get(i);
     }
 
+    /**
+     * id del elemento seleccionado del array
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * asignar los valores del elemento seleccionado a la vista
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vista=view;

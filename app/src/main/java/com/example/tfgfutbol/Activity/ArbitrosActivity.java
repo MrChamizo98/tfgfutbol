@@ -38,6 +38,11 @@ public class ArbitrosActivity extends AppCompatActivity {
     private String NombreBD="";
     TextView nombre_liga;
 
+    /**
+     * Método de creación de la vista
+     * Llamada a base de datos y asignación de datos a vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,12 +119,22 @@ public class ArbitrosActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         getMenuInflater().inflate(R.menu.menuinferior,menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){
@@ -169,6 +184,10 @@ public class ArbitrosActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Método de llamada a base de datos, para obtención de datos de árbitros
+     * @param listener
+     */
     public void BDCall(final OnGetDataListener listener){
         mRootReference.child(NombreBD).addValueEventListener(new ValueEventListener() {
             @Override

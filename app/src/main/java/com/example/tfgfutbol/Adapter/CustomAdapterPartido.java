@@ -27,26 +27,52 @@ public class CustomAdapterPartido extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * constructor
+     * @param applicationContext
+     * @param partidos
+     */
     public CustomAdapterPartido(Context applicationContext, ArrayList<PartidosPojo> partidos) {
         this.context = applicationContext;
         this.partidos=partidos;
     }
 
+    /**
+     * tamaño de array partidos
+     * @return
+     */
     @Override
     public int getCount() {
         return partidos.size();
     }
 
+    /**
+     * elemento i del array partidos
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return partidos.get(i);
     }
 
+    /**
+     * id del elemento seleccionado del arrray partidos
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * asignar a la vista los valores del elemento seleccionado
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vista=view;

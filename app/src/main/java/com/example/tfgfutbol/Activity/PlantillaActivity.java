@@ -52,6 +52,10 @@ public class PlantillaActivity extends AppCompatActivity {
 
     Plantilla[] plantillas;
 
+    /**
+     * Método de creación de la vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -221,7 +225,11 @@ public class PlantillaActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         getMenuInflater().inflate(R.menu.menuinferior,menu);
@@ -230,6 +238,11 @@ public class PlantillaActivity extends AppCompatActivity {
 
 
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){
@@ -279,6 +292,10 @@ public class PlantillaActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Método para pasar a la ventana de partidos de un equipo tras pulsar el botón
+     * @param v
+     */
     public void clickBotonPartidos(View v){
         //Creamos el intent
         Intent intent = new Intent(this, EquipoPartidoActivity.class);
@@ -289,6 +306,13 @@ public class PlantillaActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Método para acceder a la base de datos y descargar los datos de las plantillas de los
+     * diferentes equipos
+     * @param servicioPlantilla
+     * @param tabla
+     * @param nombre_equipo
+     */
     public void BDCall( final ServicioPlantilla servicioPlantilla, final Tabla tabla, final String nombre_equipo){
         mRootReference.child(NombreBD).addValueEventListener(new ValueEventListener() {
             @Override
@@ -331,6 +355,10 @@ public class PlantillaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Método para la inicializacaión de las instancias de la base de datos Realm
+     * @return servicioplantilla
+     */
     public ServicioPlantilla iniciaRealm(){
         Realm.init(this);
 

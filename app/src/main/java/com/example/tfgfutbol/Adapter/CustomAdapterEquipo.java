@@ -26,26 +26,52 @@ public class CustomAdapterEquipo  extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * constructor
+     * @param applicationContext
+     * @param equipos
+     */
     public CustomAdapterEquipo(Context applicationContext, ArrayList<EquipoPojo> equipos) {
         this.context = applicationContext;
         this.equipos=equipos;
     }
 
+    /**
+     * tamañi de array equipos
+     * @return
+     */
     @Override
     public int getCount() {
         return equipos.size();
     }
 
+    /**
+     * elemento i de array equipos
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return equipos.get(i);
     }
 
+    /**
+     * id de elemento de array
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * asignar los valores a la vista del elemento seleccionado del array
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
         View vista=view;

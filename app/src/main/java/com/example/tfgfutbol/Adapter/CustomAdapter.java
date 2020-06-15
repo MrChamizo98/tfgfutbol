@@ -26,26 +26,52 @@ public class CustomAdapter extends BaseAdapter {
     private ImageView imageView;
     private TextView country;
 
+    /**
+     * Constructor
+     * @param applicationContext
+     * @param Ligas
+     */
     public CustomAdapter(Context applicationContext, ArrayList<LigaPojo> Ligas) {
         this.context = applicationContext;
         this.ligas=Ligas;
     }
 
+    /**
+     * Tamaño de array liga
+     * @return
+     */
     @Override
     public int getCount() {
         return ligas.size();
     }
 
+    /**
+     * Obtener el elemento i del array
+     * @param i
+     * @return
+     */
     @Override
     public Object getItem(int i) {
         return ligas.get(i);
     }
 
+    /**
+     * Obtener el id del elemento del array
+     * @param i
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * Asignar los valores a la entrada del listview de la vista
+     * @param i
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
        View vista=view;

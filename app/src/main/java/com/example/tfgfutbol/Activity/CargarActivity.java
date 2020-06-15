@@ -54,6 +54,12 @@ public class CargarActivity extends AppCompatActivity {
     int p=0;
 
 
+    /**
+     * Método de creación de la vista
+     * Inicialización de instancias de bases de datos Realm
+     * Llamada a nueva vista tras carga de datos
+     * @param savedInstanceState
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -559,7 +565,13 @@ public class CargarActivity extends AppCompatActivity {
         return null;
     }*/
 
-
+    /**
+     * Método encargado de descargar datos de base de datos Firebase
+     * Los datos descargados son las Alineaciones de la liga y temporada seleccionada
+     * @param servicioAlineacion
+     * @param listener
+     * @return null
+     */
     public Void BDCallAlineacion(final ServicioAlineacion servicioAlineacion, final OnGetDataListener listener) {
         listener.onStart();
         mRootReference1.child(NombreBD).addChildEventListener(new ChildEventListener() {

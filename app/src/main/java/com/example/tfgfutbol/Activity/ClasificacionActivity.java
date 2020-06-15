@@ -66,7 +66,11 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
     public ClasificacionActivity() {
     }
 
-        @Override
+    /**
+     * Método de creación de la vista
+     * @param savedInstanceState
+     */
+    @Override
         protected void onCreate (Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.clasificacion_layout);
@@ -128,12 +132,22 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
 
         }
 
-        public boolean onCreateOptionsMenu (Menu menu){
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
+    public boolean onCreateOptionsMenu (Menu menu){
             getMenuInflater().inflate(R.menu.menusuperior, menu);
             getMenuInflater().inflate(R.menu.menuinferior, menu);
             return true;
         }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
         public boolean onOptionsItemSelected (MenuItem menuItem){
             Intent i;
             switch (menuItem.getItemId()) {
@@ -183,7 +197,13 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
             return true;
         }
 
-
+    /**
+     * Método de llamada a base de datos para descarga de datos de la clasificación de la liga
+     * y temporada seleccionada.
+     * @param servicioClasificacion
+     * @param tabla
+     * @param Jornada
+     */
         public void BDCall (final ServicioClasificacion servicioClasificacion, final TablaClasificacion tabla, final String Jornada){
 
             mRootReference.child(NombreBD2).addValueEventListener(new ValueEventListener() {
@@ -250,6 +270,13 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
             });
         }
 
+    /**
+     * Método para filtrar los datos y descargar los datos
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
         @Override
         public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
             String text = parent.getItemAtPosition(position).toString();
@@ -351,7 +378,11 @@ public class ClasificacionActivity extends AppCompatActivity implements AdapterV
 
         }
 
-        public ServicioClasificacion iniciaRealm(){
+    /**
+     * Iniciar base de datos Realm
+     * @return ServicioClsificación
+     */
+    public ServicioClasificacion iniciaRealm(){
             Realm.init(this);
 
             final RealmConfiguration realmConfigurationLigaClasif= new RealmConfiguration.Builder()

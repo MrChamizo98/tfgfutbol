@@ -72,6 +72,10 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
     TextView nombre_equipo;
     Spinner spinner;
 
+    /**
+     * Método de creación de la vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -177,12 +181,22 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
         });
     }
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         getMenuInflater().inflate(R.menu.menuinferior,menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){
@@ -232,6 +246,10 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
         return true;
     }
 
+    /**
+     * Método para la llamada a la vista de plantillas tras pulsar el botón de plantillas
+     * @param v
+     */
     public void clickBotonPlantillas(View v){
         //Creamos el intent
         Intent intent = new Intent(this, PlantillaActivity.class);
@@ -242,6 +260,14 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
         startActivity(intent);
     }
 
+    /**
+     * Método para acceder a los datos de la base de datos y en caso de no estar registrados
+     * almacenarlos en la base de datos local Realm
+     * @param servicioPartidos
+     * @param BaseDatos
+     * @param numero
+     * @param listener
+     */
     public void BDCall(final ServicioPartidos servicioPartidos, final String BaseDatos, final int numero, final OnGetDataListener listener){
         mRootReference.child(BaseDatos).addValueEventListener(new ValueEventListener() {
             @Override
@@ -294,6 +320,13 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
     }
 
 
+    /**
+     * Método utilizado para filtrar la competición seleccionada
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text= parent.getItemAtPosition(position).toString();
@@ -492,6 +525,10 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
 
     }
 
+    /**
+     * Método para inicializar las instancias de las bases de datos
+     * @return
+     */
     public ServicioPartidos iniciaRealm(){
         Realm.init(this);
 

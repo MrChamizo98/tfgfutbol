@@ -5,6 +5,10 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+/**
+ * cLase que hace que un listview no pueda tener un scrollview
+ */
+
 public class NonScrollListView extends ListView {
 
     public NonScrollListView(Context context) {

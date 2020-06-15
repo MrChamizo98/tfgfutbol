@@ -19,6 +19,10 @@ public class TFGFUTBOL extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
+
+    /**
+     * Método encargado de asignar que instancias de la base de datos Firebase se van a almacenar en local
+     */
     @Override
     public void onCreate(){
         super.onCreate();

@@ -1,7 +1,9 @@
 package com.example.tfgfutbol;
 
+/**
+ * Clase utilziada para determinar si ya se ha accedido previamente o no a los datos que ya se han cargado
+ */
 public class GlobalInfo {
-
     public static int acceso_laliga=0;
     public static int clasif_laliga=0;
     public static int acceso_premier=0;

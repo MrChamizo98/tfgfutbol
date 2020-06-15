@@ -87,6 +87,12 @@ public class PronosticoActivity extends AppCompatActivity {
     private TextView e_visg;
     private TextView d_visg;
 
+    /**
+     * Método para la creación de la vista
+     * LLamada a las bases de datos de goles y resultados
+     * Cálculo del porcentaje asignado a cada resultado y número de goles
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -396,7 +402,11 @@ public class PronosticoActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Método de descarga de datos de bases de datos
+     * @param listener
+     * @return
+     */
     public Void BDCallEstadisticas(final OnGetDataListener listener) {
         Log.e("entra bd", "base de datos");
         mRootReference.child(NombreBD).addChildEventListener(new ChildEventListener() {
@@ -449,6 +459,11 @@ public class PronosticoActivity extends AppCompatActivity {
         return null;
     }
 
+    /**
+     * Método de descarga de datos de bases de datos
+     * @param listener
+     * @return
+     */
     public Void BDCallEstadisticasResultado(final OnGetDataListener listener) {
         Log.e("entra bd", "base de datos");
         mRootReference.child(NombreBD1).addChildEventListener(new ChildEventListener() {
@@ -498,12 +513,23 @@ public class PronosticoActivity extends AppCompatActivity {
         });
         return null;
     }
+
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         getMenuInflater().inflate(R.menu.menuinferior,menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){
@@ -553,6 +579,10 @@ public class PronosticoActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Crear gráfica de goles local
+     * @param prob_gol_local
+     */
     public void setDataLocal(ArrayList<Float> prob_gol_local){
         ArrayList<BarEntry> yVals=new ArrayList<>();
         float barwidth=9f;
@@ -585,6 +615,10 @@ public class PronosticoActivity extends AppCompatActivity {
         return label;
     }
 
+    /**
+     * Crear gráfica de goles visitantes
+     * @param prob_gol_local
+     */
     public void setDataVisitante(ArrayList<Float> prob_gol_local){
         ArrayList<BarEntry> yVals=new ArrayList<>();
         float barwidth=9f;
@@ -610,6 +644,10 @@ public class PronosticoActivity extends AppCompatActivity {
         visitantechart.invalidate();
     }
 
+    /**
+     * Crear gráfica de goles local global
+     * @param prob_gol_local
+     */
     public void setDataGlobalLocal(ArrayList<Float> prob_gol_local){
         ArrayList<BarEntry> yVals=new ArrayList<>();
         float barwidth=9f;
@@ -635,6 +673,10 @@ public class PronosticoActivity extends AppCompatActivity {
         local_global_chart.invalidate();
     }
 
+    /**
+     * Crear gráfica de goles visitantes global
+     * @param prob_gol_local
+     */
     public void setDataGlobalVisitante(ArrayList<Float> prob_gol_local){
         ArrayList<BarEntry> yVals=new ArrayList<>();
         float barwidth=9f;

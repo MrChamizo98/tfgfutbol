@@ -40,6 +40,10 @@ public class SelectEquiposActivity extends AppCompatActivity{
     private String Temporada;
     TextView nombre_liga;
 
+    /**
+     * Método de creación de las vistas
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +135,11 @@ public class SelectEquiposActivity extends AppCompatActivity{
     }
 
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         getMenuInflater().inflate(R.menu.menuinferior,menu);
@@ -138,7 +147,11 @@ public class SelectEquiposActivity extends AppCompatActivity{
     }
 
 
-
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){
@@ -187,6 +200,10 @@ public class SelectEquiposActivity extends AppCompatActivity{
         return true;
     }
 
+    /**
+     * Método de llamda a base de datos para la obtención de datos de equipos
+     * @param listener
+     */
     public void BDCall(final OnGetDataListener listener){
         mRootReference.child(NombreBD).addValueEventListener(new ValueEventListener() {
             @Override

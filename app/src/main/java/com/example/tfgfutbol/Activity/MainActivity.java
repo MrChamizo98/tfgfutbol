@@ -17,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Button entrar;
 
+    /**
+     * Método de creación de la vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +44,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método de paso de vista tras pulsación del botón
+     * @param v
+     */
     public void clickBotonEntrar(View v){
         //Creamos el intent
         Intent intent = new Intent(MainActivity.this, LigaActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){

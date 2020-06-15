@@ -18,12 +18,19 @@ import java.util.Arrays;
 public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN=123;
 
+    /**
+     * Método de creación de la vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         login();
     }
 
+    /**
+     * Método de inicio de sesión de usuario
+     */
     private void login(){
         FirebaseUser usuario= FirebaseAuth.getInstance().getCurrentUser();
         if(usuario!=null){
@@ -39,6 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método para devolución de errores en la ventana o en caso de ser correcta finalizar
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);

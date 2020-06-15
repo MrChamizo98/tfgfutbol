@@ -69,6 +69,13 @@ public class AmarillasActivity extends AppCompatActivity {
     TextView nombre_liga;
     ImageView foto;
 
+
+    /**
+     * Método de creación de la actividad
+     * Inicialización de instancias de Realm
+     * Llamada a bases de datos
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -329,6 +336,15 @@ public class AmarillasActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método de creación de gráfica
+     * @param chart
+     * @param description
+     * @param textColor
+     * @param background
+     * @param animateY
+     * @return Chart
+     */
     private Chart getSameChart(Chart chart, String description, int textColor, int background, int animateY){
         chart.getDescription().setText(description);
         chart.getDescription().setTextSize(15);
@@ -339,6 +355,10 @@ public class AmarillasActivity extends AppCompatActivity {
         return chart;
     }
 
+    /**
+     * Crear leyenda de gráfica
+     * @param chart
+     */
     private void legend(Chart chart){
         Legend legend=chart.getLegend();
         legend.setForm(Legend.LegendForm.CIRCLE);
@@ -354,6 +374,10 @@ public class AmarillasActivity extends AppCompatActivity {
         legend.setCustom(entries);
     }
 
+    /**
+     * Entradas del diagrama
+     * @return entradas del diagrama
+     */
     private ArrayList<BarEntry> getBarEntries(){
         ArrayList<BarEntry> entries=new ArrayList<>();
         for(int i=0;i<equipos.size();i++){
@@ -361,6 +385,11 @@ public class AmarillasActivity extends AppCompatActivity {
         }
         return entries;
     }
+
+    /**
+     * Entradas del diagrama
+     * @return entradas del diagrama
+     */
     private ArrayList<PieEntry> getPieEntries(){
         ArrayList<PieEntry> entries=new ArrayList<>();
         for(int i=0;i<equipos.size();i++){
@@ -369,6 +398,10 @@ public class AmarillasActivity extends AppCompatActivity {
         return entries;
     }
 
+    /**
+     * Valores del eje x
+     * @param axis
+     */
     private void axisX(XAxis axis){
         axis.setGranularityEnabled(true);
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -376,15 +409,26 @@ public class AmarillasActivity extends AppCompatActivity {
         axis.setLabelRotationAngle(90);
     }
 
+    /**
+     * Valores del eje y
+     * @param axis
+     */
     private void axisLeft(YAxis axis){
         axis.setSpaceTop(30);
         axis.setAxisMinimum(0);
     }
 
+    /**
+     * Deshabilitar valores eje y a la derecha
+     * @param axis
+     */
     private void axisRight(YAxis axis){
         axis.setEnabled(false);
     }
 
+    /**
+     * Método para la creación de gráficas
+     */
     public void createCharts(){
         barChart=(BarChart) getSameChart(barChart, "Equipos", Color.RED, Color.CYAN,3000);
         barChart.setDrawGridBackground(true);
@@ -405,6 +449,11 @@ public class AmarillasActivity extends AppCompatActivity {
          */
     }
 
+    /**
+     * Método para obtener datos
+     * @param dataSet
+     * @return Dataset
+     */
     private DataSet getData(DataSet dataSet){
         dataSet.setColors(colors);
         dataSet.setValueTextSize(Color.WHITE);
@@ -412,7 +461,10 @@ public class AmarillasActivity extends AppCompatActivity {
         return dataSet;
     }
 
-
+    /**
+     * Método para obtener diagrama de barras
+     * @return Bardata
+     */
     private BarData getBarData(){
         BarDataSet barDataSet=(BarDataSet) getData(new BarDataSet(getBarEntries(),""));
 
@@ -433,6 +485,11 @@ public class AmarillasActivity extends AppCompatActivity {
         return new PieData(pieDataSet);
     }
 
+    /**
+     * Método para acceder a datos de base de datos
+     * @param listener
+     * @return null
+     */
     public Void BDCall(final OnGetDataListener listener){
 
         listener.onStart();
@@ -483,6 +540,10 @@ public class AmarillasActivity extends AppCompatActivity {
         return null;
     }
 
+    /**
+     * Método que devuelve la lista de equipos que componen la liga
+     * @return lista de equipos
+     */
     public ArrayList<String> listaequipos(){
         ArrayList<String> lista=new ArrayList<>();
         for(int i=0;i<equipos.size();i++){
@@ -491,12 +552,22 @@ public class AmarillasActivity extends AppCompatActivity {
         return lista;
     }
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior, menu);
         getMenuInflater().inflate(R.menu.menuinferior, menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected (MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()) {

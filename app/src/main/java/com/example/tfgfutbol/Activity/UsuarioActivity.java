@@ -8,6 +8,10 @@ import com.example.tfgfutbol.R;
 
 public class UsuarioActivity extends AppCompatActivity {
 
+    /**
+     * Método de creación de la vista
+     * @param savedInstancesState
+     */
     @Override
     protected void onCreate(Bundle savedInstancesState){
         super.onCreate(savedInstancesState);

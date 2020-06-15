@@ -60,6 +60,10 @@ public class PartidosActivity extends AppCompatActivity implements AdapterView.O
 
     Partidos[] lista_partidos;
 
+    /**
+     * Método de creación de vista
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -271,12 +275,22 @@ public class PartidosActivity extends AppCompatActivity implements AdapterView.O
         });
     }
 
+    /**
+     * Crear menú de selección
+     * @param menu
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menusuperior,menu);
         getMenuInflater().inflate(R.menu.menuinferior,menu);
         return true;
     }
 
+    /**
+     * Método para cambiar de actividad tras la selección de un elemento del menú
+     * @param menuItem
+     * @return true
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
         Intent i;
         switch (menuItem.getItemId()){
@@ -326,6 +340,11 @@ public class PartidosActivity extends AppCompatActivity implements AdapterView.O
         return true;
     }
 
+    /**
+     * Método de llamada a base de datos para la obtención de los datos de los partidos
+     * @param servicioPartidos
+     * @param listener
+     */
     public void BDCall(final ServicioPartidos servicioPartidos, final OnGetDataListener listener){
         mRootReference.child(NombreBD).addValueEventListener(new ValueEventListener() {
             @Override
@@ -359,6 +378,13 @@ public class PartidosActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
+    /**
+     * Método para filtrar por jornada los partidos
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text= parent.getItemAtPosition(position).toString();
@@ -511,6 +537,10 @@ public class PartidosActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    /**
+     * Método para la inicialización de las instancias de la base de datos Realm
+     * @return
+     */
     public ServicioPartidos iniciaRealm(){
         Realm.init(this);
 
