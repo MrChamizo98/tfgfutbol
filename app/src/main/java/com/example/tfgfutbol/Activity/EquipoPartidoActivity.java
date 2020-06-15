@@ -641,14 +641,31 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
                 .schemaVersion(65)
                 .build();
 
+
         if (Liga.equals("LaLiga Santander") && GlobalInfo.get_partlaliga()==0) {
-            Realm.deleteRealm(realmConfigurationLigaPar);
+            try {
+                Realm.deleteRealm(realmConfigurationLigaPar);
+            }catch (Exception e){
+
+            }
         } else if (Liga.equals("Premier League")&& GlobalInfo.get_partpremier()==0) {
-            Realm.deleteRealm(realmConfigurationPremierPar);
+            try {
+                Realm.deleteRealm(realmConfigurationPremierPar);
+            }catch (Exception e){
+
+            }
         } else if (Liga.equals("Bundesliga") && GlobalInfo.get_partbundesliga()==0) {
-            Realm.deleteRealm(realmConfigurationBundesligaPar);
+            try {
+                Realm.deleteRealm(realmConfigurationBundesligaPar);
+            }catch (Exception e){
+
+            }
         } else if (Liga.equals("Serie A") && GlobalInfo.get_partseriea()==0) {
-            Realm.deleteRealm(realmConfigurationSerieaPar);
+            try {
+                Realm.deleteRealm(realmConfigurationSerieaPar);
+            }catch (Exception e){
+
+            }
         }
 
         myRealmLigaPar = Realm.getInstance(realmConfigurationLigaPar);
