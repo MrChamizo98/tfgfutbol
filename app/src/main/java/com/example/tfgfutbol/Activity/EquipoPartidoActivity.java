@@ -667,7 +667,6 @@ public class EquipoPartidoActivity extends AppCompatActivity implements AdapterV
 
             }
         }
-
         myRealmLigaPar = Realm.getInstance(realmConfigurationLigaPar);
         myRealmPremierPar= Realm.getInstance(realmConfigurationPremierPar);
         myRealmBundesligaPar = Realm.getInstance(realmConfigurationBundesligaPar);
